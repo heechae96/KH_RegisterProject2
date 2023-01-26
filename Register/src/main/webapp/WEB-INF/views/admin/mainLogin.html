@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자메인</title>
+    <link rel="stylesheet" href="/adminCss/mainLogin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <div id="insert">
+                    <img src="/img/add.png" alt="insert">
+                    <a href="/admin/addSubject.html">과목 추가</a>
+                </div>
+                <div id="select1">
+                    <img src="/img/checked.png" alt="chechk & modify">
+                    <a href="/admin/selelctSubject.html">개설 과목 조회</a>
+                </div>
+                <div id="select2">
+                    <img src="/img/user.png" alt="chechk & modify">
+                    <a href="/admin/selelctStudent.html">학생 조회</a>
+                </div>
+                <div id="logout">
+                    <img src="/img/logout.png" alt="logout">
+                    <a href="/user/main.html">로그아웃</a>
+                </div>
+                <div id="select2">
+                    <img src="/img/admin.png" alt="정보변경">
+                    <a href="/user/infoChange.html">관리자님</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <h1>야, 너두 코딩할수있어</h1>
+            <div id="metoo">
+                <img src="/img/metoo.png" alt="야나두">
+            </div>
+        </main>
+        <footer>
+            <div id="kakao">
+                <img src="/img/kakao.png" alt="카카오">
+                <p onclick="popup();">Add to KakaoTalk</p>
+            </div>
+            <div id="git">
+                <img src="/img/git.png" alt="깃헙">
+                <a href="https://github.com/heechae96" target="_blank">
+                    <p>Git for developers</p>
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function popup() {
+            var url = "/img/kakaoQR.JPG";
+            var name = "popup";
+            var options = "width = 500, height = 500";
+            window.open(url, name, options);
+        }
+    </script>
+</body>
+
+</html>
