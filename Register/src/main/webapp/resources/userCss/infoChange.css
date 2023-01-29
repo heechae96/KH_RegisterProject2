@@ -45,20 +45,22 @@ main{
     align-items: center;
 }
     h1{
-        display: flex;
         font-size: 5em;
-        margin-bottom: 0;
+    }
+    form{
+        height: 70%;
+        width: 50%;
     }
     #inputBox{
-        height: 50%;
-        width: 50%;
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: auto;
     }
-    #pw, #name, #phone{
+    #inputBox>div:not(#action){
         height: 100%;
         width: 100%;
         display: flex;
@@ -66,12 +68,19 @@ main{
         border: 5px solid #68B984;
         border-radius: 10px;
         margin-bottom: 5px;
+        box-sizing: border-box;
     }
-    #pw input, #name input, #phone input{
+    span{
+        width: 25%;
+        font-size: 2em;
+        text-align: center;
+    }
+    #inputBox>div:not(#action) input{ 
         height: 100%;
-        width: 100%;
+        width: 75%;
         border: 0;
         font-size: 1.5em;
+        box-sizing: border-box;
     }
     #submit{
         height: 75%;
@@ -93,6 +102,7 @@ main{
     #submit a, #bye a{
         text-decoration: none;
         color: black;
+        margin: auto;
     }
     #action{
         width: 100%;

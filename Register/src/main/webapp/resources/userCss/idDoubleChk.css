@@ -1,0 +1,43 @@
+*{
+    font-family: 'Nanum Brush Script', cursive;
+}
+
+body{
+    margin: 0;
+    height: 300px;
+    width: 500px;
+    background-color: #F8D756;
+}
+
+main{
+	height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+form{
+    height: 85%;
+    width: 85%;
+    background-color: white;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+input{
+    background-color:#F8D756;
+    border-radius: 5px;
+    padding: 5px;
+}
+.choice{
+	padding: 5px 10px; 
+}
+h1{
+    color: #3D5656;
+}
+h3{
+	color: #68B984;
+}

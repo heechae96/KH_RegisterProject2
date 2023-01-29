@@ -13,7 +13,22 @@ public class User {
 	public User() {
 		super();
 	}
+	
+	public User(String userId, String userPw) {
+		super();
+		this.userId = userId;
+		this.userPw = userPw;
+	}
 
+
+	public User(String userId, String userPw, String userName, String userPhoneNo) {
+		super();
+		this.userId = userId;
+		this.userPw = userPw;
+		this.userName = userName;
+		this.userPhoneNo = userPhoneNo;
+	}
+	
 	public User(String userId, String userPw, String userName, int subjectCode, String userPhoneNo, Timestamp userDate) {
 		super();
 		this.userId = userId;

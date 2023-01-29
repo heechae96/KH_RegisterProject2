@@ -35,6 +35,7 @@ header{
         width: 75px;
         height: 75px;
     }
+    
 
 main{
     width: 100%;
@@ -47,10 +48,13 @@ main{
     h1{
         font-size: 5em;
     }
-
-    #inputBox{
+    form{
         height: 40%;
         width: 50%;
+    }
+    #inputBox{
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
