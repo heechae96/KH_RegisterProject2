@@ -8,23 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
 import user.model.service.UserService;
 import user.model.vo.User;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class FindPwServlet
  */
-@WebServlet("/register/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register/findPw")
+public class FindPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public FindPwServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -35,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/user/findPassword.jsp").forward(request, response);
 	}
 
 	/**
@@ -44,28 +42,41 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// 인코딩 설정을 안해주면 한글이 깨져서 조회가 안됨..
+		request.setCharacterEncoding("UTF-8");
+
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
 
+		User user = new User(id, name, phone);
 		UserService uService = new UserService();
-		int result = -1;
-		result = uService.selectLogin(id, pw);
 
+		int result = -1;
+		result = uService.findPw(user);
 		if (result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			response.sendRedirect("/index.jsp");
+			// 성공하면 메인으로
+			request.setAttribute("user", user);
+			response.sendRedirect("/register/updatePw?id=" + id);
 		} else {
+			// 실패하면 에러페이지
+			
+			// 페이지 이동
+			// request.setAttribute("title", "비밀번호 찾기 실패");
+			// request.setAttribute("msg", "비밀번호 찾기가 완료되지 않았습니다");
+			// request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			
+			// 팝업 띄우기
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			String pageURL = "/register/login";
+			String pageURL = "/register/findPw";
 			writer.println("<script>"); 
-			writer.println("alert('아이디 또는 비밀번호를 다시 확인해주세요')"); 
+			writer.println("alert('해당하는 정보가 존재하지 않습니다. 다시 확인해주세요')"); 
 			writer.println("location.href='"+pageURL+"'"); 
 			writer.println("</script>"); 
 			writer.close();
 		}
 
 	}
-
 }

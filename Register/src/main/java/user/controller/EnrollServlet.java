@@ -46,7 +46,7 @@ public class EnrollServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("viewId");
 		String pw = request.getParameter("pw");
 		String name = request.getParameter("name");
 		String number = request.getParameter("number");

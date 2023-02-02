@@ -50,14 +50,16 @@ public class UserDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+
 			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				result = rs.getInt(1);
 			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
@@ -82,6 +84,7 @@ public class UserDAO {
 				result = rset.getInt(1);
 			}
 			pstmt.close();
+			rset.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -127,6 +130,7 @@ public class UserDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				user = new User();
@@ -157,6 +161,60 @@ public class UserDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 비밀번호 찾기 DAO
+	 * 
+	 * @param conn
+	 * @param user
+	 * @return result
+	 */
+	public int findPw(Connection conn, User user) {
+		String sql = "SELECT COUNT(*) FROM USER_TBL WHERE USER_ID = ? AND USER_NAME = ? AND USER_PHONE_NO = ?";
+		int result = -1;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user.getUserId());
+			pstmt.setString(2, user.getUserName());
+			pstmt.setString(3, user.getUserPhoneNo());
+
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+			pstmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 비밀번호 변경 DAO
+	 * 
+	 * @param conn
+	 * @param id
+	 * @return
+	 */
+	public int updatePw(Connection conn, String id, String pwd) {
+		String sql = "UPDATE USER_TBL SET USER_PW = ? WHERE USER_ID = ?";
+		int result = -1;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+
 			result = pstmt.executeUpdate();
 			pstmt.close();
 		} catch (SQLException e) {

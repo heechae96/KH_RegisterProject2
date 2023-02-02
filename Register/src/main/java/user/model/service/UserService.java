@@ -32,9 +32,10 @@ public class UserService {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 아이디 중복 체크 Service
+	 * 
 	 * @param userid
 	 * @return
 	 */
@@ -78,7 +79,7 @@ public class UserService {
 	}
 
 	/**
-	 * 아이디로 정보조회 Service
+	 * 정보조회 Service
 	 * 
 	 * @param id
 	 * @return user
@@ -91,7 +92,7 @@ public class UserService {
 	}
 
 	/**
-	 * 아이디로 회원탈퇴 Service
+	 * 회원탈퇴 Service
 	 * 
 	 * @param id
 	 * @return result
@@ -108,6 +109,35 @@ public class UserService {
 		return result;
 	}
 
-	
+	/**
+	 * 비밀번호 찾기 Service
+	 * 
+	 * @param user
+	 * @return result
+	 */
+	public int findPw(User user) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = userDao.findPw(conn, user);
+		return result;
+	}
+
+	/**
+	 * 비밀번호 변경 Service
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int updatePw(String id, String pwd) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = userDao.updatePw(conn, id, pwd);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
 
 }

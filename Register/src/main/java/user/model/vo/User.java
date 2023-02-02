@@ -20,6 +20,12 @@ public class User {
 		this.userPw = userPw;
 	}
 
+	public User(String userId, String userName, String userPhoneNo) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPhoneNo = userPhoneNo;
+	}
 
 	public User(String userId, String userPw, String userName, String userPhoneNo) {
 		super();

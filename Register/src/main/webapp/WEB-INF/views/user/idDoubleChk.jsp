@@ -25,10 +25,10 @@
 					type="submit" value="중복 체크">
 				<c:choose>
 					<c:when test="${result==1}">
-						<h3>이미 사용 중인 아이디입니다.</h3>
+						<h3>${id}는 이미 사용 중인 아이디입니다.</h3>
 					</c:when>
 					<c:when test="${result==0}">
-						<h3>사용가능한 아이디입니다.</h3>
+						<h3>${id}는 사용가능한 아이디입니다.</h3>
 						<input type="button" value="사용" class="choice" onclick="idOk()">
 					</c:when>
 					<c:otherwise>
@@ -44,7 +44,7 @@
 			opener.joinform.viewId.value = document.idCheckForm.id.value;
 			opener.joinform.chkUserId.value = document.idCheckForm.id.value;
 
-			window.close();
+			self.close();
 		}
 	</script>
 </body>
