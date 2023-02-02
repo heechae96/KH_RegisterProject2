@@ -46,11 +46,14 @@ main{
 }
     h1{
         font-size: 5em;
-        margin-bottom: 0;
     }
-    #inputBox{
+    form{
         height: 60%;
         width: 50%;
+    }
+    #inputBox{
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -73,17 +76,16 @@ main{
         font-size: 1.5em;
     }
     /* placeholder가 연.월.일 뜨는게 싫어서 수정*/
-    [type=date]{
-        color: #757575;
-    }
     input[type='date']::before {
         content: attr(data-placeholder);
         width: 100%;
+        color: #757575;
     }
 
     input[type='date']:focus::before,
     input[type='date']:valid::before {
         display: none;
+        color: #757575;
     }
     #submit{
         height: 75%;

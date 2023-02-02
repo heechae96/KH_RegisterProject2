@@ -4,19 +4,27 @@ import java.sql.Date;
 
 public class Subject {
 	private String subjectName;
-	private String subjectCode;
+	private int subjectCode;
 	private String name;
 	private int enrollNo;
 	private int maxNo;
 	private Date startDate;
 	private Date endDate;
-	
+
 	public Subject() {
 		super();
 	}
 
-	public Subject(String subjectName, String subjectCode, String name, int enrollNo, int maxNo, Date startDate,
-			Date endDate) {
+	public Subject(String subjectName, String name, int maxNo, Date startDate, Date endDate) {
+		super();
+		this.subjectName = subjectName;
+		this.name = name;
+		this.maxNo = maxNo;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	public Subject(String subjectName, int subjectCode, String name, int enrollNo, int maxNo, Date startDate, Date endDate) {
 		super();
 		this.subjectName = subjectName;
 		this.subjectCode = subjectCode;
@@ -35,11 +43,11 @@ public class Subject {
 		this.subjectName = subjectName;
 	}
 
-	public String getSubjectCode() {
+	public int getSubjectCode() {
 		return subjectCode;
 	}
 
-	public void setSubjectCode(String subjectCode) {
+	public void setSubjectCode(int subjectCode) {
 		this.subjectCode = subjectCode;
 	}
 
@@ -88,5 +96,5 @@ public class Subject {
 		return "Subject [subjectName=" + subjectName + ", subjectCode=" + subjectCode + ", name=" + name + ", enrollNo="
 				+ enrollNo + ", maxNo=" + maxNo + ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
-	
+
 }
