@@ -42,14 +42,13 @@ public class DeleteServlet extends HttpServlet {
 		result = sService.deleteSubject(codeNum);
 		if (result > 0) {
 			// 성공하면 과목 조회 페이지로 이동
-			System.out.println("삭제 성공");
 			response.sendRedirect("/admin/select");
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
 			String pageURL = "/admin/select";
 			writer.println("<script>");
-			writer.println("alert('과목 삭제에 실패하였습니다.')");
+			writer.println("alert('해당 과목이 존재하지 않아 삭제가 불가능합니다.')");
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();

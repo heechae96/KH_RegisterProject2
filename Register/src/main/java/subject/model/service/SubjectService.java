@@ -64,4 +64,67 @@ public class SubjectService {
 		return result;
 	}
 
+	/**
+	 * 과목 수정 Service
+	 * 
+	 * @param subject
+	 * @return result
+	 */
+	public int updateSubject(Subject subject) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = subjectDao.updateSubject(conn, subject);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+
+	/**
+	 * 해당 과목 조회 Service
+	 * 
+	 * @param code
+	 * @return subject
+	 */
+	public Subject selectSubject(int code) {
+		Connection conn = JDBCTemplate.getConnection();
+		Subject subject = null;
+		subject = subjectDao.selectSubject(conn, code);
+		return subject;
+	}
+
+	/**
+	 * 수강신청 Service
+	 * 
+	 * @param code
+	 * @param enrollNum
+	 * @return result
+	 */
+	public int plusSubject(int code, Subject subject) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = subjectDao.plusSubject(conn, code, subject);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+
+	}
+
+	/**
+	 * 수강신청한 과목 조회 Service
+	 * @param id
+	 * @return subject
+	 */
+	public Subject selectUserSubject(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		Subject subject = null;
+		subject = subjectDao.selectUserSubject(conn, id);
+		return subject;
+	}
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,33 +29,35 @@
 			<form action="/register/update" method="post">
 				<div id="inputBox">
 					<div id="id">
-						<span>아이디</span>
-						<input type="text" id="id" name="id" value="${user.userId }" readonly>
+						<span>아이디</span> <input type="text" id="id" name="id"
+							value="${user.userId }" readonly>
 					</div>
 					<div id="pw">
-						<span>비밀번호</span>
-						<input type="text" id="pw" name="pw" value="${user.userPw }">
+						<span>비밀번호</span> <input type="text" id="pw" name="pw"
+							value="${user.userPw }">
 					</div>
 					<div id="name">
-						<span>이름</span>
-						<input type="text" id="name" name="name" value="${user.userName }">
+						<span>이름</span> <input type="text" id="name" name="name"
+							value="${user.userName }">
 					</div>
 					<div id="phone">
-						<span>휴대번호</span>
-						<input type="tel" id="phone" name="phone" value="${user.userPhoneNo }">
+						<span>휴대번호</span> <input type="tel" id="phone" name="phone"
+							value="${user.userPhoneNo }">
 					</div>
 					<div id="date">
-						<span>가입일</span>
-						<input type="datetime" id="date" name="date" value="${user.userDate }" readonly>
+						<span>가입일</span> <input type="datetime" id="date" name="date"
+							value="${user.userDate }" readonly>
 					</div>
 					<div id="submit">
 						<button type="submit">수정하기</button>
 					</div>
-					<div id="action">
-						<div id="bye">
-							<a href="javascript:void(0)"><p onclick="check()">회원탈퇴</p></a>
+					<c:if test="${sessionScope.id ne 'admin'}">
+						<div id="action">
+							<div id="bye">
+								<a href="javascript:void(0)"><p onclick="check()">회원탈퇴</p></a>
+							</div>
 						</div>
-					</div>
+					</c:if>
 				</div>
 			</form>
 		</main>
@@ -79,7 +82,7 @@
 			window.open(url, name, options);
 		}
 		function check() {
-			if(confirm("주의! 회원탈퇴 이후에는 복구 할 수 없습니다. \n정말로 회원탈퇴를 진행하시겠습니까?")){
+			if (confirm("주의! 회원탈퇴 이후에는 복구 할 수 없습니다. \n정말로 회원탈퇴를 진행하시겠습니까?")) {
 				location.href = "/register/delete?id=${sessionScope.id }";
 			}
 		}

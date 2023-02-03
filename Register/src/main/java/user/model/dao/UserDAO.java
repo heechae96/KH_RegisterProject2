@@ -125,7 +125,7 @@ public class UserDAO {
 	 * @return user
 	 */
 	public User selectOneById(Connection conn, String id) {
-		String sql = "SELECT USER_ID, USER_PW, USER_NAME, USER_PHONE_NO, USER_DATE FROM USER_TBL WHERE USER_ID = ?";
+		String sql = "SELECT * FROM USER_TBL WHERE USER_ID = ?";
 		User user = null;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -137,6 +137,7 @@ public class UserDAO {
 				user.setUserId(rs.getString("USER_ID"));
 				user.setUserPw(rs.getString("USER_PW"));
 				user.setUserName(rs.getString("USER_NAME"));
+				user.setSubjectCode(rs.getInt("SUBJECT_CODE"));
 				user.setUserPhoneNo(rs.getString("USER_PHONE_NO"));
 				user.setUserDate(rs.getTimestamp("USER_DATE"));
 			}
@@ -213,6 +214,30 @@ public class UserDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pwd);
+			pstmt.setString(2, id);
+
+			result = pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 수강신청 DAO
+	 * 
+	 * @param conn
+	 * @param code
+	 * @return result
+	 */
+	public int addCodeSubject(Connection conn, int code, String id) {
+		String sql = "UPDATE USER_TBL SET SUBJECT_CODE = ? WHERE USER_ID = ?";
+		int result = -1;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
 			pstmt.setString(2, id);
 
 			result = pstmt.executeUpdate();

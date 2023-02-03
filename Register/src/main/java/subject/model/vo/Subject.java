@@ -23,6 +23,16 @@ public class Subject {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
+	
+	public Subject(int subjectCode, String subjectName, String name, int maxNo, Date startDate, Date endDate) {
+		super();
+		this.subjectCode = subjectCode;
+		this.subjectName = subjectName;
+		this.name = name;
+		this.maxNo = maxNo;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
 
 	public Subject(String subjectName, int subjectCode, String name, int enrollNo, int maxNo, Date startDate, Date endDate) {
 		super();

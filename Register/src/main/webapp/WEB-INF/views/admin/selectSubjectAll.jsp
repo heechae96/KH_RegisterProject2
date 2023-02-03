@@ -32,8 +32,8 @@
 						<th>과목명</th>
 						<th>과목코드</th>
 						<th>교수명</th>
-						<th>수강 신청 인원</th>
-						<th>최대 수강 인원</th>
+						<th>신청 인원</th>
+						<th>인원 제한</th>
 						<th>개강일</th>
 						<th>종강일</th>
 						<th>수정</th>
@@ -82,8 +82,8 @@
 		function modChk(event) {
 			let modConfirm = confirm('정말 수정하시겠습니까?');
 			var code = event.getAttribute('class');
-			if (delConfirm) {
-				location.href = "/admin/modify?code=" + code;
+			if (modConfirm) {
+				location.href = "/admin/update?code=" + code;
 			} else {
 				return;
 			}

@@ -59,8 +59,8 @@
 								href="/admin/insert">과목 추가</a>
 						</div>
 						<div id="select1">
-							<img src="/resources/img/checked.png" alt="chechk & modify"> <a
-								href="/admin/select">개설 과목 조회</a>
+							<img src="/resources/img/checked.png" alt="chechk & modify">
+							<a href="/admin/select">개설 과목 조회</a>
 						</div>
 						<div id="select2">
 							<img src="/resources/img/user.png" alt="chechk & modify"> <a
@@ -70,9 +70,9 @@
 							<img src="/resources/img/logout.png" alt="logout"> <a
 								href="/register/logout">로그아웃</a>
 						</div>
-						<div id="select2">
+						<div id="update">
 							<img src="/resources/img/admin.png" alt="정보변경"> <a
-								href="/user/infoChange.html">관리자님</a>
+								href="/register/userInfo?id=${sessionScope.id }">관리자님</a>
 						</div>
 					</nav>
 				</header>
@@ -102,12 +102,12 @@
 				<header>
 					<nav>
 						<div id="add">
-							<img src="/resources/img/add.png" alt="add"> <a href="">수강
-								신청</a>
+							<img src="/resources/img/add.png" alt="add"> <a
+								href="/register/select">수강 신청</a>
 						</div>
 						<div id="check">
 							<img src="/resources/img/checked.png" alt="chechk & modify">
-							<a href="">확인 / 정정</a>
+							<a href="/register/chkUpdate?id=${sessionScope.id }">확인 / 정정</a>
 						</div>
 						<div id="logout">
 							<img src="/resources/img/logout.png" alt="logout"> <a

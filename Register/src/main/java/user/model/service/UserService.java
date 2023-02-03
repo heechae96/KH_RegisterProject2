@@ -140,4 +140,23 @@ public class UserService {
 		return result;
 	}
 
+	/**
+	 * 수강신청 Service
+	 * 
+	 * @param id
+	 * @param code
+	 * @return result
+	 */
+	public int addCodeSubject(int code, String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = userDao.addCodeSubject(conn, code, id);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+
 }

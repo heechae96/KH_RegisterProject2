@@ -60,7 +60,7 @@ main{
         align-items: center;
         margin: auto;
     }
-    #inputBox>div:not(#action){
+    #inputBox > div:not(#submit){
         height: 100%;
         width: 100%;
         display: flex;
@@ -70,13 +70,13 @@ main{
         margin-bottom: 5px;
     }
     span{
-        width: 25%;
-        font-size: 2em;
+        width: 40%;
+        font-size: 1.5em;
         text-align: center;
     }
-    #inputBox>div:not(#action) input{ 
+    #inputBox > div > input{
         height: 100%;
-        width: 75%;
+        width: 60%;
         border: 0;
         font-size: 1.5em;
         box-sizing: border-box;
@@ -87,33 +87,20 @@ main{
         border: 5px solid #68B984;
         background-color: #68B984;
         border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     #submit button{
-        height: 100%;
-        width: 100%;
         margin-top: 0;
         border: 0;
-        text-align: center;
         background-color: #68B984;
         font-size: 2em;
         border-radius: 10px;
     }
-    #submit a, #bye a{
+    #submit a{
         text-decoration: none;
         color: black;
-        margin: auto;
-    }
-    #action{
-        width: 100%;
-        display: flex;
-        text-align: center;
-    }
-    #bye{
-        width: 100%;
-    }
-    #bye p{
-        font-size: 1.25em;
-        color: #3D5656;
     }
 
 footer{

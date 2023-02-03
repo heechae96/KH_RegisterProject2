@@ -1,6 +1,7 @@
 package subject.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -60,10 +61,14 @@ public class InsertServlet extends HttpServlet {
 			// 성공하면 과목 조회 페이지로 이동
 			response.sendRedirect("/admin/select");
 		} else {
-			// 실패하면 에러 페이지로 이동
-			request.setAttribute("title", "과목 등록 실패");
-			request.setAttribute("msg", "과목 등록이 완료되지 않았습니다.");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/admin/insert";
+			writer.println("<script>");
+			writer.println("alert('과목 등록에 실패하였습니다.')");
+			writer.println("location.href='" + pageURL + "'");
+			writer.println("</script>");
+			writer.close();
 		}
 
 	}
