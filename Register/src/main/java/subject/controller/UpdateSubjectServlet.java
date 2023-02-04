@@ -14,16 +14,16 @@ import subject.model.service.SubjectService;
 import subject.model.vo.Subject;
 
 /**
- * Servlet implementation class InsertServlet
+ * Servlet implementation class UpdateSubServlet
  */
-@WebServlet("/admin/insert")
-public class InsertServlet extends HttpServlet {
+@WebServlet("/admin/update")
+public class UpdateSubjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public InsertServlet() {
+	public UpdateSubjectServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -34,28 +34,49 @@ public class InsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/admin/addSubject.jsp").forward(request, response);
+
+		int code = Integer.parseInt(request.getParameter("code"));	// 쿼리스트링값
+		SubjectService sService = new SubjectService();
+		Subject subject = null;
+		subject = sService.selectSubject(code);
+		request.setAttribute("subject", subject);
+		System.out.println("테스트: " + subject);
+		if (subject == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/admin/select";
+			writer.println("<script>");
+			writer.println("alert('해당 과목이 존재하지 않아 수정이 불가능합니다.')");
+			writer.println("location.href='" + pageURL + "'");
+			writer.println("</script>");
+			writer.close();
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/admin/modifySubject.jsp").forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
 
-		String subjectName = request.getParameter("subjectName");
+		int code = Integer.parseInt(request.getParameter("subCode"));	// sql문 조건값
+		String subjectName = request.getParameter("subjectName");	
 		String name = request.getParameter("name");
 		int maxNum = Integer.parseInt(request.getParameter("maxNum"));
 		Date start = Date.valueOf(request.getParameter("start"));
 		Date end = Date.valueOf(request.getParameter("end"));
 
-		Subject subject = new Subject(subjectName, name, maxNum, start, end);
+		Subject subject = new Subject(code, subjectName, name, maxNum, start, end);
 		SubjectService sService = new SubjectService();
 
 		int result = -1;
-		result = sService.insertSubject(subject);
+		result = sService.updateSubject(subject);
 
 		if (result > 0) {
 			// 성공하면 과목 조회 페이지로 이동
@@ -63,9 +84,9 @@ public class InsertServlet extends HttpServlet {
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			String pageURL = "/admin/insert";
+			String pageURL = "/admin/select";
 			writer.println("<script>");
-			writer.println("alert('과목 등록에 실패하였습니다.')");
+			writer.println("alert('과목 수정에 실패하였습니다.')");
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();

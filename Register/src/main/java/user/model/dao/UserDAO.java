@@ -226,13 +226,13 @@ public class UserDAO {
 	}
 
 	/**
-	 * 수강신청 DAO
+	 * 수강신청 더하기 DAO
 	 * 
 	 * @param conn
 	 * @param code
 	 * @return result
 	 */
-	public int addCodeSubject(Connection conn, int code, String id) {
+	public int plusCodeSubject(Connection conn, int code, String id) {
 		String sql = "UPDATE USER_TBL SET SUBJECT_CODE = ? WHERE USER_ID = ?";
 		int result = -1;
 		try {
@@ -247,6 +247,30 @@ public class UserDAO {
 		}
 
 		return result;
+	}
+
+	/**
+	 * 수강신청 빼기 DAO
+	 * 
+	 * @param conn
+	 * @param code
+	 * @return result
+	 */
+	public int minusCodeSubject(Connection conn, String id) {
+		String sql = "UPDATE USER_TBL SET SUBJECT_CODE = NULL WHERE USER_ID = ?";
+		int result = -1;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+
 	}
 
 }

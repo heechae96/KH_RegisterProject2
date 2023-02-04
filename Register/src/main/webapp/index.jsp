@@ -8,6 +8,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>메인페이지</title>
+<!-- favicon.ico 404 오류 방지 -->
+<link rel="shortcut icon" href="#">
 <link rel="stylesheet" href="/resources/userCss/main.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,17 +35,17 @@
 				</div>
 			</main>
 			<footer>
-				<div id="kakao">
-					<img src="/resources/img/kakao.png" alt="카카오">
-					<p onclick="popup();">Add to KakaoTalk</p>
-				</div>
-				<div id="git">
-					<img src="/resources/img/git.png" alt="깃헙"> <a
-						href="https://github.com/heechae96" target="_blank">
-						<p>Git for developers</p>
-					</a>
-				</div>
-			</footer>
+					<div id="kakao">
+						<img src="/resources/img/kakao.png" alt="카카오">
+						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
+					</div>
+					<div id="git">
+						<img src="/resources/img/git.png" alt="깃헙"> <a
+							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
+							<p>Git for developers</p>
+						</a>
+					</div>
+				</footer>
 		</div>
 	</c:if>
 
@@ -85,25 +87,25 @@
 				<footer>
 					<div id="kakao">
 						<img src="/resources/img/kakao.png" alt="카카오">
-						<p onclick="popup();">Add to KakaoTalk</p>
+						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
 					</div>
 					<div id="git">
 						<img src="/resources/img/git.png" alt="깃헙"> <a
-							href="https://github.com/heechae96" target="_blank">
+							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
 							<p>Git for developers</p>
 						</a>
 					</div>
 				</footer>
 			</div>
 		</c:if>
-		<!-- 관리자가 아닌 경우 -->
+		<!-- 이용자인 경우 -->
 		<c:if test="${sessionScope.id ne 'admin' }">
 			<div id="container">
 				<header>
 					<nav>
 						<div id="add">
 							<img src="/resources/img/add.png" alt="add"> <a
-								href="/register/select">수강 신청</a>
+								href="/register/select?id=${sessionScope.id }">수강 신청</a>
 						</div>
 						<div id="check">
 							<img src="/resources/img/checked.png" alt="chechk & modify">
@@ -128,11 +130,11 @@
 				<footer>
 					<div id="kakao">
 						<img src="/resources/img/kakao.png" alt="카카오">
-						<p onclick="popup();">Add to KakaoTalk</p>
+						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
 					</div>
 					<div id="git">
 						<img src="/resources/img/git.png" alt="깃헙"> <a
-							href="https://github.com/heechae96" target="_blank">
+							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
 							<p>Git for developers</p>
 						</a>
 					</div>

@@ -18,8 +18,8 @@
 
 <body>
 	<main>
-		<h1>아이디 중복 확인</h1>
 		<form action="/register/idChk" method="get" name="idCheckForm">
+			<h1>아이디 중복 확인</h1>
 			<div id="inputBox">
 				<input type="text" name="id" value="${id}"> <input
 					type="submit" value="중복 체크">

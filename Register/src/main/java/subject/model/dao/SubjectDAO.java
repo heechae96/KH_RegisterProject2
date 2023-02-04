@@ -158,7 +158,7 @@ public class SubjectDAO {
 	}
 
 	/**
-	 * 수강신청 DAO
+	 * 수강신청 인원 더하기 DAO
 	 * 
 	 * @param conn
 	 * @param code
@@ -166,11 +166,36 @@ public class SubjectDAO {
 	 * @return result
 	 */
 	public int plusSubject(Connection conn, int code, Subject subject) {
-		String sql = "UPDATE SUBJECT_TBL SET ENROLL_NO = ? WEHRE SUBJECT_CODE = ?";
+		String sql = "UPDATE SUBJECT_TBL SET ENROLL_NO = ? WHERE SUBJECT_CODE = ?";
 		int result = -1;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, subject.getEnrollNo() + 1);
+			pstmt.setInt(2, code);
+
+			result = pstmt.executeUpdate();
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	/**
+	 * 수강신청 인원 빼기 DAO
+	 * 
+	 * @param conn
+	 * @param code
+	 * @param enrollNum
+	 * @return result
+	 */
+	public int minusSubject(Connection conn, int code, Subject subject) {
+		String sql = "UPDATE SUBJECT_TBL SET ENROLL_NO = ? WHERE SUBJECT_CODE = ?";
+		int result = -1;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, subject.getEnrollNo() - 1);
 			pstmt.setInt(2, code);
 
 			result = pstmt.executeUpdate();
@@ -196,9 +221,9 @@ public class SubjectDAO {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
-			
+
 			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				subject = new Subject();
 				subject.setSubjectName(rs.getString(1));
 				subject.setSubjectCode(rs.getInt(2));

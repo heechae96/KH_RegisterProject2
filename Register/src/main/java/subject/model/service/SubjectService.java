@@ -96,7 +96,7 @@ public class SubjectService {
 	}
 
 	/**
-	 * 수강신청 Service
+	 * 수강신청 더하기 Service
 	 * 
 	 * @param code
 	 * @param enrollNum
@@ -106,6 +106,26 @@ public class SubjectService {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = -1;
 		result = subjectDao.plusSubject(conn, code, subject);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+
+	}
+	
+	/**
+	 * 수강신청 빼기 Service
+	 * 
+	 * @param code
+	 * @param enrollNum
+	 * @return result
+	 */
+	public int minusSubject(int code, Subject subject) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = subjectDao.minusSubject(conn, code, subject);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {

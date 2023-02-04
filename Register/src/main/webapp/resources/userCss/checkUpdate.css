@@ -47,13 +47,28 @@ main{
         height: 10%;
         font-size: 5em;
     }
-    form{
-		height: 90%;
-    	width: 90%;
-	}
-    #tableBox{
+    h2{
+        color: #3D5656;
+    }
+	form{
+    	height: 90%;
+        width: 90%;
+    }
+    
+    #viewBox{
         height: 100%;
         width: 100%;
+        margin-bottom: 53.6px;
+    }
+    #view{
+        height: 75%;
+        width: 100%;
+    }
+    #select{
+        height: 25%;
+        width: 100%;
+    }
+    #viewBox div{
         margin-bottom: 53.6px;
     }
     table{
@@ -61,16 +76,25 @@ main{
         font-size: 1.25em;
         text-align: center;
         border-collapse: collapse;
-        margin: auto;
+        width: 100%;
+    }
+    caption{
+        align-items: flex-start;
     }
     tr{
         height: 50px;
     }
-    th:nth-child(1){
-        width: 30%;
+    #view th:nth-child(1){
+        width: 40%;
     }
-    th:not(:nth-child(1)){
+    #view th:not(:nth-child(1)){
         width: 10%;
+    }
+    #select th:nth-child(1){
+        width: 44%;
+    }
+    #select th:not(:nth-child(1)){
+        width: 8%;
     }
     th{
         background-color: #68B984;

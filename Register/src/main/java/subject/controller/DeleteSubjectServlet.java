@@ -2,8 +2,6 @@ package subject.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import subject.model.service.SubjectService;
-import subject.model.vo.Subject;
 
 /**
- * Servlet implementation class SelectServlet
+ * Servlet implementation class DeleteServlet
  */
-@WebServlet("/admin/select")
-public class SelectServlet extends HttpServlet {
+@WebServlet("/admin/delete")
+public class DeleteSubjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SelectServlet() {
+	public DeleteSubjectServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,21 +33,22 @@ public class SelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		int codeNum = Integer.parseInt(request.getParameter("code"));
 		SubjectService sService = new SubjectService();
-		List<Subject> list = new ArrayList<Subject>();
-		list = sService.selectAll();
-		request.setAttribute("list", list);
-		if (list.isEmpty()) {
+		int result = -1;
+		result = sService.deleteSubject(codeNum);
+		if (result > 0) {
+			// 성공하면 과목 조회 페이지로 이동
+			response.sendRedirect("/admin/select");
+		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			String pageURL = "/admin/insert";
+			String pageURL = "/admin/select";
 			writer.println("<script>");
-			writer.println("alert('개설된 과목이 없습니다. 과목을 개설해주세요')");
+			writer.println("alert('해당 과목이 존재하지 않아 삭제가 불가능합니다.')");
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();
-		} else {
-			request.getRequestDispatcher("/WEB-INF/views/admin/selectSubjectAll.jsp").forward(request, response);
 		}
 	}
 

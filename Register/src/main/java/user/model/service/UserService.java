@@ -141,16 +141,35 @@ public class UserService {
 	}
 
 	/**
-	 * 수강신청 Service
+	 * 수강신청 더하기 Service
 	 * 
 	 * @param id
 	 * @param code
 	 * @return result
 	 */
-	public int addCodeSubject(int code, String id) {
+	public int plusCodeSubject(int code, String id) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = -1;
-		result = userDao.addCodeSubject(conn, code, id);
+		result = userDao.plusCodeSubject(conn, code, id);
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+	
+	/**
+	 * 수강신청 빼기 Service
+	 * 
+	 * @param id
+	 * @param code
+	 * @return result
+	 */
+	public int minusCodeSubject(String id) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = -1;
+		result = userDao.minusCodeSubject(conn, id);
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {

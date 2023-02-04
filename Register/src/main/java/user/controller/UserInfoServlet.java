@@ -1,7 +1,6 @@
 package user.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,12 +38,8 @@ public class UserInfoServlet extends HttpServlet {
 		User user = uService.selectOneById(id);
 		if (user != null) {
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/WEB-INF/views/user/infoChange.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/changeInfo.jsp").forward(request, response);
 		} else {
-			// 로그인 페이지처럼 alert창을 띄울수 없음
-			// 로그인 페이지쪽은 doPost였음
-			// id가 없을때 에러페이지로 이동
-			
 			request.setAttribute("title", "마이페이지로 가기 실패");
 			request.setAttribute("msg", "해당하는 아이디가 존재하지 않습니다");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);

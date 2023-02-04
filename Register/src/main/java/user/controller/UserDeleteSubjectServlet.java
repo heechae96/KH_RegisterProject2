@@ -2,8 +2,6 @@ package user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,61 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import subject.model.service.SubjectService;
 import subject.model.vo.Subject;
 import user.model.service.UserService;
-import user.model.vo.User;
 
 /**
- * Servlet implementation class UserSelectSubject
+ * Servlet implementation class UserSubjectDeleteServlet
  */
-@WebServlet("/register/select")
-public class UserSelectSubject extends HttpServlet {
+@WebServlet("/register/deleteSub")
+public class UserDeleteSubjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserSelectSubject() {
+	public UserDeleteSubjectServlet() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		SubjectService sService = new SubjectService();
-		List<Subject> list = new ArrayList<Subject>();
-		list = sService.selectAll();
-		request.setAttribute("list", list);
-		if (list.isEmpty()) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer = response.getWriter();
-			String pageURL = "/";
-			writer.println("<script>");
-			writer.println("alert('개설된 과목이 없습니다. 관리자에게 문의하세요')");
-			writer.println("location.href='" + pageURL + "'");
-			writer.println("</script>");
-			writer.close();
-		} else {
-			// 수강신청을 이미 완료한 경우에는 확인/정정 페이지로 이동
-			UserService uService = new UserService();
-			String id = request.getParameter("id");
-			User user = uService.selectOneById(id);
-			if (user.getSubjectCode() != 0) {
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter writer = response.getWriter();
-				String pageURL = "/register/chkUpdate?id=" + id;
-				writer.println("<script>");
-				writer.println("alert('수강신청을 이미 완료했습니다')");
-				writer.println("location.href='" + pageURL + "'");
-				writer.println("</script>");
-				writer.close();
-			} else {
-				request.getRequestDispatcher("/WEB-INF/views/user/selectSubject.jsp").forward(request, response);
-			}
-		}
-
 	}
 
 	/**
@@ -77,7 +34,8 @@ public class UserSelectSubject extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 사용자가 수강신청을 하면 2가지를 변경해야함.
+
+		// 사용자가 수강신청 삭제를 하면 2가지를 변경해야함.
 		// 1. 과목의 수강 신청 인원
 		// 2. 학생의 과목 코드
 
@@ -90,19 +48,19 @@ public class UserSelectSubject extends HttpServlet {
 		SubjectService sService = new SubjectService();
 		Subject subject = sService.selectSubject(code);
 		int resultSubject = -1;
-		resultSubject = sService.plusSubject(code, subject);
+		resultSubject = sService.minusSubject(code, subject);
 
 		// 2.
 		UserService uService = new UserService();
 		int resultUser = -1;
-		resultUser = uService.plusCodeSubject(code, id);
+		resultUser = uService.minusCodeSubject(id);
 
 		if (resultSubject > 0 && resultUser > 0) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			String pageURL = "/register/chkUpdate?id=" + id;
+			String pageURL = "/register/select?id=" + id;
 			writer.println("<script>");
-			writer.println("alert('성공적으로 수강신청 되었습니다.')");
+			writer.println("alert('성공적으로 수강신청 내역을 삭제했습니다.')");
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();
