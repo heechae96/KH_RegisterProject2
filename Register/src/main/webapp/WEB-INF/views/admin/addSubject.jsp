@@ -28,13 +28,13 @@
 			<form action="/admin/insert" method="post">
 				<div id="inputBox">
 					<div id="subjectName">
-						<input type="text" name="subjectName" placeholder="과목명">
+						<input type="text" name="subjectName" placeholder="과목명" required>
 					</div>
 					<div id="name">
-						<input type="text" name="name" placeholder="교수명">
+						<input type="text" name="name" placeholder="교수명" required>
 					</div>
 					<div id="maxNum">
-						<input type="number" name="maxNum" placeholder="최대 수강 인원">
+						<input type="number" name="maxNum" placeholder="인원 제한" required>
 					</div>
 					<!-- 타입이 date인 경우 placeholder가 연.월.일로 고정됨 -->
 					<div id="start">
@@ -52,11 +52,11 @@
 			</form>
 		</main>
 		<footer>
-			<div id="kakao">
+			<div>
 				<img src="/resources/img/kakao.png" alt="카카오">
 				<p onclick="popup();">Add to KakaoTalk</p>
 			</div>
-			<div id="git">
+			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
 					href="https://github.com/heechae96" target="_blank">
 					<p>Git for developers</p>

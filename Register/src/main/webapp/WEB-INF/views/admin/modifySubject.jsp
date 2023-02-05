@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,32 +28,32 @@
 			<form action="/admin/update" method="post">
 				<div id="inputBox">
 					<div id="subjectName">
-						<span>과목명</span>
-						<input type="text" name="subjectName" value="${subject.subjectName }" required>
+						<span>과목명</span> <input type="text" name="subjectName"
+							value="${subject.subjectName }" required>
 					</div>
 					<div id="subCode">
-						<span>과목코드</span>
-						<input type="text" name="subCode" value="${subject.subjectCode }" readonly>
+						<span>과목코드</span> <input type="text" name="subCode"
+							value="${subject.subjectCode }" readonly>
 					</div>
 					<div id="name">
-						<span>교수명</span>
-						<input type="text" name="name" value="${subject.name }" required>
+						<span>교수명</span> <input type="text" name="name"
+							value="${subject.name }" required>
 					</div>
 					<div id=enrollNum">
-						<span>수강 신청 인원</span>
-						<input type="number" name="enrollNum" value="${subject.enrollNo }" readonly>
+						<span>신청 인원</span> <input type="number" name="enrollNum"
+							value="${subject.enrollNo }" readonly>
 					</div>
 					<div id="maxNum">
-						<span>최대 수강 인원</span>
-						<input type="number" name="maxNum" value="${subject.maxNo }" required>
+						<span>인원 제한</span> <input type="number" name="maxNum"
+							value="${subject.maxNo }" required>
 					</div>
 					<div id="start">
-						<span>개강일</span>
-						<input type="date" name="start" value="${subject.startDate }" required>
+						<span>개강일</span> <input type="date" name="start"
+							value="${subject.startDate }" required>
 					</div>
 					<div id="end">
-						<span>종강일</span>
-						<input type="date" name="end" value="${subject.endDate }" required>
+						<span>종강일</span> <input type="date" name="end"
+							value="${subject.endDate }" required>
 					</div>
 					<div id="submit">
 						<button>완료</button>
@@ -62,11 +62,11 @@
 			</form>
 		</main>
 		<footer>
-			<div id="kakao">
+			<div>
 				<img src="/resources/img/kakao.png" alt="카카오">
 				<p onclick="popup();">Add to KakaoTalk</p>
 			</div>
-			<div id="git">
+			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
 					href="https://github.com/heechae96" target="_blank">
 					<p>Git for developers</p>

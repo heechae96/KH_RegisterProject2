@@ -10,7 +10,7 @@
 <title>메인페이지</title>
 <!-- favicon.ico 404 오류 방지 -->
 <link rel="shortcut icon" href="#">
-<link rel="stylesheet" href="/resources/userCss/main.css">
+<link rel="stylesheet" href="/resources/userCss/index.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -35,17 +35,17 @@
 				</div>
 			</main>
 			<footer>
-					<div id="kakao">
-						<img src="/resources/img/kakao.png" alt="카카오">
-						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
-					</div>
-					<div id="git">
-						<img src="/resources/img/git.png" alt="깃헙"> <a
-							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
-							<p>Git for developers</p>
-						</a>
-					</div>
-				</footer>
+				<div>
+					<img src="/resources/img/kakao.png" alt="카카오">
+					<p onclick="popup();">Add to KakaoTalk</p>
+				</div>
+				<div>
+					<img src="/resources/img/git.png" alt="깃헙"> <a
+						href="https://github.com/heechae96" target="_blank">
+						<p>Git for developers</p>
+					</a>
+				</div>
+			</footer>
 		</div>
 	</c:if>
 
@@ -85,13 +85,13 @@
 					</div>
 				</main>
 				<footer>
-					<div id="kakao">
+					<div>
 						<img src="/resources/img/kakao.png" alt="카카오">
-						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
+						<p onclick="popup();">Add to KakaoTalk</p>
 					</div>
-					<div id="git">
+					<div>
 						<img src="/resources/img/git.png" alt="깃헙"> <a
-							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
+							href="https://github.com/heechae96" target="_blank">
 							<p>Git for developers</p>
 						</a>
 					</div>
@@ -128,13 +128,13 @@
 					</div>
 				</main>
 				<footer>
-					<div id="kakao">
+					<div>
 						<img src="/resources/img/kakao.png" alt="카카오">
-						<a href="javascript:void(0)"><p onclick="popup();">Add to KakaoTalk</p></a>
+						<p onclick="popup();">Add to KakaoTalk</p>
 					</div>
-					<div id="git">
+					<div>
 						<img src="/resources/img/git.png" alt="깃헙"> <a
-							href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
+							href="https://github.com/heechae96" target="_blank">
 							<p>Git for developers</p>
 						</a>
 					</div>

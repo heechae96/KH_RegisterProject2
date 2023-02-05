@@ -79,30 +79,29 @@ main{
     }
 
 footer{
-    width: 1000px;
-    height: 100px;
+    height: 10vh;
+    width: 100%;
     background-color: #F8D756;
     display: flex;
-    flex-direction: row;
 }
-    #kakao, #git{
+    footer div{
         width: 50%;
         height: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
     }
-    #kakao img, #git img{
+    footer div img{
         width: 50px;
         height: 50px;
     }
-    #kakao a, #git a{
+    footer div a{
         text-decoration: none;
         color: black;
     }
-    p{
+    footer div p{
         font-size: 1.5em;
     }
-    p:hover{
+    footer div p:hover{
         font-size: 1.75em;
-    }  
+    }

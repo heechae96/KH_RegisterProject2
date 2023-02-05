@@ -40,7 +40,6 @@ public class UpdateSubjectServlet extends HttpServlet {
 		Subject subject = null;
 		subject = sService.selectSubject(code);
 		request.setAttribute("subject", subject);
-		System.out.println("테스트: " + subject);
 		if (subject == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();

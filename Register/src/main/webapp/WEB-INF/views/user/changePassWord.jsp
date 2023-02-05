@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>비밀번호 변경</title>
-<link rel="stylesheet" href="/resources/userCss/changePassword.css">
+<link rel="stylesheet" href="/resources/userCss/changePassWord.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -40,11 +40,11 @@
 			</form>
 		</main>
 		<footer>
-			<div id="kakao">
+			<div>
 				<img src="/resources/img/kakao.png" alt="카카오">
 				<p onclick="popup();">Add to KakaoTalk</p>
 			</div>
-			<div id="git">
+			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
 					href="https://github.com/heechae96" target="_blank">
 					<p>Git for developers</p>

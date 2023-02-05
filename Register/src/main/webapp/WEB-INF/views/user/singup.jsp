@@ -25,12 +25,14 @@
 		</header>
 		<main>
 			<h1>회원가입</h1>
-			<form action="/register/enroll" method="post" name="joinform" onsubmit="return dupIdChk()">
+			<form action="/register/enroll" method="post" name="joinform"
+				onsubmit="return dupIdChk()">
 				<div id="inputBox">
 					<button id="doubleChk" onclick="chk()">중복확인</button>
 					<input type="hidden" name="chkUserId">
 					<div id="id">
-						<input type="text" name="viewId" placeholder="아이디" required autofocus>
+						<input type="text" name="viewId" placeholder="아이디" required
+							autofocus>
 					</div>
 					<div id="pw">
 						<input type="password" name="pw" placeholder="비밀번호" required>
@@ -49,15 +51,14 @@
 			</form>
 		</main>
 		<footer>
-			<div id="kakao">
+			<div>
 				<img src="/resources/img/kakao.png" alt="카카오">
 				<p onclick="popup();">Add to KakaoTalk</p>
 			</div>
-			<div id="git">
+			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
-					href="https://github.com/heechae96" target="_blank">
-					<p>Git for developers</p>
-				</a>
+					href="https://github.com/heechae96" target="_blank">	
+					<p>Git for developers</p></a>
 			</div>
 		</footer>
 	</div>
@@ -75,19 +76,18 @@
 				return;
 			}
 			var url = "/register/idChk?id=" + document.joinform.viewId.value;
-			window.open(url, "chkIdForm", "width=500, height=300");
+			window.open(url, "chkIdForm", "width=800, height=500");
 		}
-		
+
 		function dupIdChk() {
 			var dupId = document.querySelector("[type=hidden]").value;
-			if(dupId == ""){
+			if (dupId == "") {
 				alert("아이디 중복확인이 필요합니다.")
 				return false;
-			}else{
+			} else {
 				return true;
 			}
 		}
-		
 	</script>
 </body>
 

@@ -60,11 +60,11 @@
 			</div>
 		</main>
 		<footer>
-			<div id="kakao">
+			<div>
 				<img src="/resources/img/kakao.png" alt="카카오">
 				<p onclick="popup();">Add to KakaoTalk</p>
 			</div>
-			<div id="git">
+			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
 					href="https://github.com/heechae96" target="_blank">
 					<p>Git for developers</p>
