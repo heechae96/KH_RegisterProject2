@@ -46,7 +46,7 @@
 			</div>
 			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
-					href="https://github.com/heechae96" target="_blank">
+					href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
 					<p>Git for developers</p>
 				</a>
 			</div>
