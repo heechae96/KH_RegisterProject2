@@ -78,7 +78,7 @@
 		function popup() {
 			var url = "/resources/img/kakaoQR.JPG";
 			var name = "popup";
-			var options = "width = 500, height = 500";
+			var options = "width = 750, height = 925";
 			window.open(url, name, options);
 		}
 	</script>
