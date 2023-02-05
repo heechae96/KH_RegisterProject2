@@ -107,32 +107,17 @@ public class UserSelectSubject extends HttpServlet {
 			writer.println("</script>");
 			writer.close();
 		} else if (resultSubject <= 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer = response.getWriter();
-			String pageURL = "/";
-			writer.println("<script>");
-			writer.println("alert('과목 테이블 문제 발생')");
-			writer.println("location.href='" + pageURL + "'");
-			writer.println("</script>");
-			writer.close();
+			request.setAttribute("title", "수강 신청 실패");
+			request.setAttribute("msg", "과목 테이블 문제 발생");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
 		} else if (resultUser <= 0) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer = response.getWriter();
-			String pageURL = "/";
-			writer.println("<script>");
-			writer.println("alert('유저 테이블 문제 발생')");
-			writer.println("location.href='" + pageURL + "'");
-			writer.println("</script>");
-			writer.close();
+			request.setAttribute("title", "수강 신청 실패");
+			request.setAttribute("msg", "유저 테이블 문제 발생");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
 		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter writer = response.getWriter();
-			String pageURL = "/register/select";
-			writer.println("<script>");
-			writer.println("alert('과목, 유저 테이블 문제 발생')");
-			writer.println("location.href='" + pageURL + "'");
-			writer.println("</script>");
-			writer.close();
+			request.setAttribute("title", "수강 신청 실패");
+			request.setAttribute("msg", "과목, 유저 테이블 모두 문제 발생");
+			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
 		}
 
 	}

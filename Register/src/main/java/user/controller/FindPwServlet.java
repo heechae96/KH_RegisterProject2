@@ -60,19 +60,11 @@ public class FindPwServlet extends HttpServlet {
 			request.setAttribute("user", user);
 			response.sendRedirect("/register/updatePw?id=" + id);
 		} else {
-			// 실패하면 에러페이지
-			
-			// 페이지 이동
-			// request.setAttribute("title", "비밀번호 찾기 실패");
-			// request.setAttribute("msg", "비밀번호 찾기가 완료되지 않았습니다");
-			// request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-			
-			// 팝업 띄우기
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
 			String pageURL = "/register/findPw";
 			writer.println("<script>"); 
-			writer.println("alert('해당하는 정보가 존재하지 않습니다. 다시 확인해주세요')"); 
+			writer.println("alert('비밀번호 변경에 실패하였습니다.')"); 
 			writer.println("location.href='"+pageURL+"'"); 
 			writer.println("</script>"); 
 			writer.close();

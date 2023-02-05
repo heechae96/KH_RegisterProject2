@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +44,15 @@ public class UserInfoServlet extends HttpServlet {
 			request.setAttribute("title", "마이페이지로 가기 실패");
 			request.setAttribute("msg", "해당하는 아이디가 존재하지 않습니다");
 			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/register/login";
+			writer.println("<script>"); 
+			writer.println("alert('해당하는 아이디가 존재하지 않습니다')"); 
+			writer.println("location.href='"+pageURL+"'"); 
+			writer.println("</script>"); 
+			writer.close();
 		}
 
 	}

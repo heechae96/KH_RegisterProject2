@@ -1,8 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.HashSet;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,10 +60,14 @@ public class EnrollServlet extends HttpServlet {
 			// 성공하면 로그인 페이지로 이동
 			response.sendRedirect("/register/login");
 		} else {
-			// 실패하면 에러 페이지로 이동
-			request.setAttribute("title", "회원 가입 실패");
-			request.setAttribute("msg", "회원가입이 완료되지 않았습니다.");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/register/enroll";
+			writer.println("<script>");
+			writer.println("alert('회원 가입에 실패하였습니다.')");
+			writer.println("location.href='" + pageURL + "'");
+			writer.println("</script>");
+			writer.close();
 		}
 	}
 

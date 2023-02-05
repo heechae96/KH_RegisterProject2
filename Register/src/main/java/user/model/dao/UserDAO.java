@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import common.SubjectUser;
 import user.model.vo.User;
 
 public class UserDAO {
@@ -270,7 +272,41 @@ public class UserDAO {
 		}
 
 		return result;
+	}
 
+	/**
+	 * 모든 학생 조회 DAO
+	 * 
+	 * @param conn
+	 * @return list
+	 */
+	public List<SubjectUser> selectAll(Connection conn) {
+		String sql = "SELECT U.USER_ID, U.USER_PW, U.USER_NAME, U.SUBJECT_CODE, S.SUBJECT_NAME, U.USER_PHONE_NO, U.USER_DATE "
+				+ "FROM USER_TBL U LEFT OUTER JOIN SUBJECT_TBL S " 
+				+ "ON U.SUBJECT_CODE = S.SUBJECT_CODE "
+				+ "WHERE USER_ID != 'admin'";
+		List<SubjectUser> list = new ArrayList<SubjectUser>();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				SubjectUser su = new SubjectUser();
+				su.setUserId(rs.getString(1));
+				su.setUserPw(rs.getString(2));
+				su.setUserName(rs.getString(3));
+				su.setSubjectCode(rs.getInt(4));
+				su.setSubjectName(rs.getString(5));
+				su.setUserPhoneNo(rs.getString(6));
+				su.setUserDate(rs.getTimestamp(7));
+				list.add(su);
+			}
+			stmt.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
 }

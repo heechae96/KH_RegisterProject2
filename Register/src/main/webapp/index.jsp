@@ -66,7 +66,7 @@
 						</div>
 						<div id="select2">
 							<img src="/resources/img/user.png" alt="chechk & modify"> <a
-								href="/admin/selelctStudent.html">학생 조회</a>
+								href="/admin/selectUser">이용자 조회</a>
 						</div>
 						<div id="logout">
 							<img src="/resources/img/logout.png" alt="logout"> <a

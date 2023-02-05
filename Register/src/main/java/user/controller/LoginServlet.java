@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 		if (result > 0) {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/");
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();

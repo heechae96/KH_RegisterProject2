@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (session != null) {
 			session.invalidate(); // 세션무효화 : 로그아웃
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/");
 		}
 	}
 }

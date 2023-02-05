@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,12 +57,16 @@ public class UpdateServlet extends HttpServlet {
 		result = uService.updateUser(user);
 		if (result > 0) {
 			// 성공하면 메인으로
-			response.sendRedirect("/index.jsp");
+			response.sendRedirect("/");
 		} else {
-			// 실패하면 에러페이지
-			request.setAttribute("title", "정보 수정 실패");
-			request.setAttribute("msg", "회원 정보 수정이 완료되지 않았습니다");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/register/update";
+			writer.println("<script>"); 
+			writer.println("alert('정보 수정에 실패하였습니다')"); 
+			writer.println("location.href='"+pageURL+"'"); 
+			writer.println("</script>"); 
+			writer.close();
 		}
 	}
 

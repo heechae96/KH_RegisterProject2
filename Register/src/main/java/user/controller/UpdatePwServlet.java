@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,11 +40,14 @@ public class UpdatePwServlet extends HttpServlet {
 			request.setAttribute("user", user);
 			request.getRequestDispatcher("/WEB-INF/views/user/changePassWord.jsp").forward(request, response);
 		} else {
-			// 임의로 잘못된 쿼리스트링 값을 넘겨받은 경우..
-			// 비밀번호 찾기 페이지에서 팝업창으로 유효성이 검사된 상태
-			request.setAttribute("title", "비밀번호 찾기 실패");
-			request.setAttribute("msg", "해당하는 정보가 존재하지 않습니다");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/register/findPw";
+			writer.println("<script>"); 
+			writer.println("alert('해당 아이디가 존재하지 않습니다.')"); 
+			writer.println("location.href='"+pageURL+"'"); 
+			writer.println("</script>"); 
+			writer.close();
 		}
 
 	}
@@ -66,9 +70,14 @@ public class UpdatePwServlet extends HttpServlet {
 			// 로그인 페이지로
 			response.sendRedirect("/register/login");
 		} else {
-			request.setAttribute("title", "비밀번호 변경 실패");
-			request.setAttribute("msg", "비밀번호 변경이 완료되지 않았습니다");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter writer = response.getWriter();
+			String pageURL = "/";
+			writer.println("<script>"); 
+			writer.println("alert('비밀번호 변경에 실패하였습니다')"); 
+			writer.println("location.href='"+pageURL+"'"); 
+			writer.println("</script>"); 
+			writer.close();
 		}
 
 	}

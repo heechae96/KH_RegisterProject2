@@ -1,9 +1,10 @@
 package user.model.service;
 
 import java.sql.Connection;
-import java.util.HashSet;
+import java.util.List;
 
 import common.JDBCTemplate;
+import common.SubjectUser;
 import user.model.dao.UserDAO;
 import user.model.vo.User;
 
@@ -158,7 +159,7 @@ public class UserService {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 수강신청 빼기 Service
 	 * 
@@ -176,6 +177,18 @@ public class UserService {
 			JDBCTemplate.rollback(conn);
 		}
 		return result;
+	}
+
+	/**
+	 * 모든 학생 조회 Service
+	 * 
+	 * @return list
+	 */
+	public List<SubjectUser> selectAll() {
+		Connection conn = JDBCTemplate.getConnection();
+		List<SubjectUser> user = null;
+		user = userDao.selectAll(conn);
+		return user;
 	}
 
 }
