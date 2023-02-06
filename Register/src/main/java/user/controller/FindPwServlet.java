@@ -64,7 +64,7 @@ public class FindPwServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			String pageURL = "/register/findPw";
 			writer.println("<script>"); 
-			writer.println("alert('비밀번호 변경에 실패하였습니다.')"); 
+			writer.println("alert('비밀번호 찾기에 실패하였습니다.')"); 
 			writer.println("location.href='"+pageURL+"'"); 
 			writer.println("</script>"); 
 			writer.close();
