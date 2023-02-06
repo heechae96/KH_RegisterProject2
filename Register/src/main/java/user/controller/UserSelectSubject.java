@@ -84,40 +84,51 @@ public class UserSelectSubject extends HttpServlet {
 		String id = request.getParameter("id");
 		int code = Integer.parseInt(request.getParameter("codeNum"));
 
-		// 1.
-		// 선택한 과목의 정보를 가져옴
-		// 기존 수강신청 인원을 구하기 위함
 		SubjectService sService = new SubjectService();
+		UserService uService = new UserService();
 		Subject subject = sService.selectSubject(code);
 		int resultSubject = -1;
-		resultSubject = sService.plusSubject(code, subject);
-
-		// 2.
-		UserService uService = new UserService();
 		int resultUser = -1;
-		resultUser = uService.plusCodeSubject(code, id);
 
-		if (resultSubject > 0 && resultUser > 0) {
+		int enrollNum = subject.getEnrollNo();
+		int maxNum = subject.getMaxNo();
+
+		if (enrollNum < maxNum) {
+			resultSubject = sService.plusSubject(code, subject);
+			resultUser = uService.plusCodeSubject(code, id);
+			if (resultSubject > 0 && resultUser > 0) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter writer = response.getWriter();
+				String pageURL = "/register/chkUpdate?id=" + id;
+				writer.println("<script>");
+				writer.println("alert('성공적으로 수강신청 되었습니다.')");
+				writer.println("location.href='" + pageURL + "'");
+				writer.println("</script>");
+				writer.close();
+			}
+//			else if (resultSubject <= 0) {
+//				request.setAttribute("title", "수강 신청 실패");
+//				request.setAttribute("msg", "과목 테이블 문제 발생");
+//				request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//			} else if (resultUser <= 0) {
+//				request.setAttribute("title", "수강 신청 실패");
+//				request.setAttribute("msg", "유저 테이블 문제 발생");
+//				request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//			} else {
+//				request.setAttribute("title", "수강 신청 실패");
+//				request.setAttribute("msg", "과목, 유저 테이블 모두 문제 발생");
+//				request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//			}
+		} else {
+			// 신청인원이 인원제한에 걸린 경우
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
-			String pageURL = "/register/chkUpdate?id=" + id;
+			String pageURL = "/register/select?id=" + id;
 			writer.println("<script>");
-			writer.println("alert('성공적으로 수강신청 되었습니다.')");
+			writer.println("alert('해당 과목은 인원초과로 신청 할 수 없습니다.')");
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();
-		} else if (resultSubject <= 0) {
-			request.setAttribute("title", "수강 신청 실패");
-			request.setAttribute("msg", "과목 테이블 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-		} else if (resultUser <= 0) {
-			request.setAttribute("title", "수강 신청 실패");
-			request.setAttribute("msg", "유저 테이블 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-		} else {
-			request.setAttribute("title", "수강 신청 실패");
-			request.setAttribute("msg", "과목, 유저 테이블 모두 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
 		}
 
 	}

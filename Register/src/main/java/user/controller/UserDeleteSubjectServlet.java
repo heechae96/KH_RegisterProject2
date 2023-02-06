@@ -64,20 +64,21 @@ public class UserDeleteSubjectServlet extends HttpServlet {
 			writer.println("location.href='" + pageURL + "'");
 			writer.println("</script>");
 			writer.close();
-		} else if (resultSubject <= 0) {
-			// 실패하면 에러페이지
-			request.setAttribute("title", "수강 신청 내역 삭제 실패");
-			request.setAttribute("msg", "과목 테이블 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-		} else if (resultUser <= 0) {
-			request.setAttribute("title", "수강 신청 내역 삭제 실패");
-			request.setAttribute("msg", "유저 테이블 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-		} else {
-			request.setAttribute("title", "수강 신청 내역 삭제 실패");
-			request.setAttribute("msg", "과목, 유저 테이블 모두 문제 발생");
-			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
-		}
+		} 
+//		else if (resultSubject <= 0) {
+//			// 실패하면 에러페이지
+//			request.setAttribute("title", "수강 신청 내역 삭제 실패");
+//			request.setAttribute("msg", "과목 테이블 문제 발생");
+//			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//		} else if (resultUser <= 0) {
+//			request.setAttribute("title", "수강 신청 내역 삭제 실패");
+//			request.setAttribute("msg", "유저 테이블 문제 발생");
+//			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//		} else {
+//			request.setAttribute("title", "수강 신청 내역 삭제 실패");
+//			request.setAttribute("msg", "과목, 유저 테이블 모두 문제 발생");
+//			request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
+//		}
 
 	}
 
