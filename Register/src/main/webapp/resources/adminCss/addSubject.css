@@ -123,6 +123,7 @@ footer{
     }
     footer div p{
         font-size: 1.5em;
+        margin: 0;
     }
     footer div p:hover{
         font-size: 1.75em;
