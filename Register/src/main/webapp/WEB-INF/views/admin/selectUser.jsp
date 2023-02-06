@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,10 +44,25 @@
 							<td>${user.userId }</td>
 							<td>${user.userPw }</td>
 							<td>${user.userName }</td>
-							<td>${user.subjectCode }</td>
-							<td>${user.subjectName }</td>
+							<c:choose>
+								<c:when test="${user.subjectCode == 0}">
+									<td>-</td>
+								</c:when>
+								<c:otherwise>
+									<td>${user.subjectCode }</td>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${user.subjectCode == ''}">
+									<td>-</td>
+								</c:when>
+								<c:otherwise>
+									<td>${user.subjectName }</td>
+								</c:otherwise>
+							</c:choose>
 							<td>${user.userPhoneNo }</td>
-							<td>${user.userDate }</td>
+							<td><fmt:formatDate value="${user.userDate }"
+									pattern="yyyy-MM-dd" /></td>
 							<td>
 								<button class="${user.userId }" onclick="delChk(this)">선택</button>
 							</td>
@@ -62,7 +78,8 @@
 			</div>
 			<div>
 				<img src="/resources/img/git.png" alt="깃헙"> <a
-					href="https://github.com/heechae96/KH_RegisterProject2" target="_blank">
+					href="https://github.com/heechae96/KH_RegisterProject2"
+					target="_blank">
 					<p>Git for developers</p>
 				</a>
 			</div>
