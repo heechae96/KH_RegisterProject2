@@ -28,7 +28,7 @@
 			<form action="/register/enroll" method="post" name="joinform"
 				onsubmit="return dupIdChk()">
 				<div id="inputBox">
-					<button id="doubleChk" onclick="chk()">중복확인</button>
+					<button type="button" id="doubleChk" onclick="chk()">중복확인</button>
 					<input type="hidden" name="chkUserId">
 					<div id="id">
 						<input type="text" name="viewId" placeholder="아이디" required
