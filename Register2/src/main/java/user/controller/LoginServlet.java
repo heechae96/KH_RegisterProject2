@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import user.model.service.UserService;
 import user.model.service.UserServiceImpl;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -45,10 +46,11 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		User user = new User(id, pw);
 
 		UserService uService = new UserServiceImpl();
 		int result = -1;
-		result = uService.selectLogin(id, pw);
+		result = uService.selectLogin(user);
 
 		if (result > 0) {
 			HttpSession session = request.getSession();

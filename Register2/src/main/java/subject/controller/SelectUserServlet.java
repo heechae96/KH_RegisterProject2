@@ -35,10 +35,9 @@ public class SelectUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserService uService = new UserServiceImpl();
-		List<SubjectUser> list = new ArrayList<SubjectUser>();
-		list = uService.selectAll();
-		request.setAttribute("list", list);
-		if (list.isEmpty()) {
+		List<SubjectUser> suList = new ArrayList<SubjectUser>();
+		suList = uService.selectAll();
+		if (suList.isEmpty()) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter writer = response.getWriter();
 			String pageURL = "/";
@@ -48,6 +47,7 @@ public class SelectUserServlet extends HttpServlet {
 			writer.println("</script>");
 			writer.close();
 		} else {
+			request.setAttribute("list", suList);
 			request.getRequestDispatcher("/WEB-INF/views/admin/selectUser.jsp").forward(request, response);
 		}
 	}

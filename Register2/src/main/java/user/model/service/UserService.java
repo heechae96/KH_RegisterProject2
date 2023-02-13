@@ -18,19 +18,18 @@ public interface UserService {
 	/**
 	 * 아이디 중복 체크 Service
 	 * 
-	 * @param userid
-	 * @return
+	 * @param id
+	 * @return result
 	 */
 	public int selectOneByIdCnt(String id);
 
 	/**
 	 * 로그인 Service
 	 * 
-	 * @param id
-	 * @param pw
+	 * @param user
 	 * @return result
 	 */
-	public int selectLogin(String id, String pw);
+	public int selectLogin(User user);
 
 	/**
 	 * 정보변경 Service
@@ -47,7 +46,7 @@ public interface UserService {
 	 * @return user
 	 */
 	public User selectOneById(String id);
-	
+
 	/**
 	 * 회원탈퇴 Service
 	 * 
@@ -55,7 +54,7 @@ public interface UserService {
 	 * @return result
 	 */
 	public int deleteUser(String id);
-	
+
 	/**
 	 * 비밀번호 찾기 Service
 	 * 
@@ -67,25 +66,23 @@ public interface UserService {
 	/**
 	 * 비밀번호 변경 Service
 	 * 
-	 * @param id
-	 * @return
+	 * @param user
+	 * @return result
 	 */
-	public int updatePw(String id, String pwd);
+	public int updatePw(User user);
 
 	/**
 	 * 수강신청 더하기 Service
 	 * 
-	 * @param id
-	 * @param code
+	 * @param user
 	 * @return result
 	 */
-	public int plusCodeSubject(int code, String id);
-	
+	public int plusCodeSubject(User user);
+
 	/**
 	 * 수강신청 빼기 Service
 	 * 
 	 * @param id
-	 * @param code
 	 * @return result
 	 */
 	public int minusCodeSubject(String id);
@@ -93,8 +90,8 @@ public interface UserService {
 	/**
 	 * 모든 학생 조회 Service
 	 * 
-	 * @return list
+	 * @return subjectUserList
 	 */
 	public List<SubjectUser> selectAll();
-	
+
 }

@@ -60,7 +60,7 @@ public interface SubjectStore {
 	 * @param enrollNum
 	 * @return int
 	 */
-	public int plusSubject(SqlSession session, int code, Subject subject);
+	public int plusSubject(SqlSession session, Subject subject);
 
 	/**
 	 * 수강신청 인원 빼기 Store
@@ -70,7 +70,7 @@ public interface SubjectStore {
 	 * @param enrollNum
 	 * @return int
 	 */
-	public int minusSubject(SqlSession session, int code, Subject subject);
+	public int minusSubject(SqlSession session, Subject subject);
 
 	/**
 	 * 수강신청한 과목 조회 Store

@@ -34,7 +34,7 @@ public interface UserStore {
 	 * @param pw
 	 * @return int
 	 */
-	public int selectLogin(SqlSession session, String id, String pw);
+	public int selectLogin(SqlSession session, User user);
 
 	/**
 	 * 정보변경 Store
@@ -78,7 +78,7 @@ public interface UserStore {
 	 * @param id
 	 * @return int
 	 */
-	public int updatePw(SqlSession session, String id, String pwd);
+	public int updatePw(SqlSession session, User user);
 
 	/**
 	 * 수강신청 더하기 Store
@@ -87,7 +87,7 @@ public interface UserStore {
 	 * @param code
 	 * @return int
 	 */
-	public int plusCodeSubject(SqlSession session, int code, String id);
+	public int plusCodeSubject(SqlSession session, User user);
 
 	/**
 	 * 수강신청 빼기 Store

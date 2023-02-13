@@ -13,4 +13,40 @@
 		<result property="startDate" column="START_DATE" />
 		<result property="endDate" column="END_DATE" />
 	</resultMap>
+	<insert id="insertSubject">
+		INSERT INTO SUBJECT_TBL VALUES(#{subjectName}
+		,SUB_SEQUENCE.NEXTVAL, #{name}, DEFAULT, #{maxNo}, #{startDate},
+		#{endDate})
+	</insert>
+	<select id="selectAll" resultMap="subjectResultMap">
+		SELECT * FROM SUBJECT_TBL
+	</select>
+	<delete id="deleteSubject">
+		DELETE FROM SUBJECT_TBL WHERE SUBJECT_CODE =
+		#{subjectCode}
+	</delete>
+	<update id="updateSubject">
+		UPDATE SUBJECT_TBL SET SUBJECT_NAME = #{subjectName},
+		NAME = #{name}, MAX_NO = #{maxNo}, START_DATE = #{startDate}, END_DATE
+		= #{endDate} WHERE SUBJECT_CODE = #{subjectCode}
+	</update>
+	<select id="selectSubject" resultMap="subjectResultMap">
+		SELECT * FROM SUBJECT_TBL
+		WHERE SUBJECT_CODE = #{subjectCode}
+	</select>
+	<update id="plusSubject">
+		UPDATE SUBJECT_TBL SET ENROLL_NO = #{enrollNo}+1
+		WHERE SUBJECT_CODE = #{subjectCode}
+	</update>
+	<update id="minusSubject">
+		UPDATE SUBJECT_TBL SET ENROLL_NO = #{enrollNo}-1
+		WHERE SUBJECT_CODE = #{subjectCode}
+	</update>
+	<!-- resultMap에 포함이 안되어서 parameterType을 적어줌 -->
+	<select id="selectUserSubject" resultMap="subjectResultMap"
+		parameterType="user.model.vo.User">
+		SELECT SUBJECT_NAME, SUBJECT_CODE, NAME, ENROLL_NO,
+		MAX_NO, START_DATE, END_DATE FROM SUBJECT_TBL "
+		+ "JOIN USER_TBL USING(SUBJECT_CODE) WHERE USER_ID = #{userId}
+	</select>
 </mapper>

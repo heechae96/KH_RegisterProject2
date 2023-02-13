@@ -85,6 +85,7 @@ public class UserSelectSubject extends HttpServlet {
 
 		String id = request.getParameter("id");
 		int code = Integer.parseInt(request.getParameter("codeNum"));
+		User user = new User(id, code);
 
 		SubjectService sService = new SubjectServiceImpl();
 		UserService uService = new UserServiceImpl();
@@ -96,8 +97,8 @@ public class UserSelectSubject extends HttpServlet {
 		int maxNum = subject.getMaxNo();
 
 		if (enrollNum < maxNum) {
-			resultSubject = sService.plusSubject(code, subject);
-			resultUser = uService.plusCodeSubject(code, id);
+			resultSubject = sService.plusSubject(subject);
+			resultUser = uService.plusCodeSubject(user);
 			if (resultSubject > 0 && resultUser > 0) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter writer = response.getWriter();

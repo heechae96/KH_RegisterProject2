@@ -12,4 +12,68 @@
 		<result property="userPhoneNo" column="USER_PHONE_NO" />
 		<result property="userDate" column="USER_DATE" />
 	</resultMap>
+	<!-- 꼭 아래와 똑같은 테이블이 만들어져 있지 않아도 된다.. -->
+	<!-- 두개의 테이블을 합친 클래스만 선언해서 사용 -->
+	<resultMap type="SubjectUser" id="subjectUserResultMap">
+		<id property="userId" column="USER_ID" />
+		<result property="userPw" column="USER_PW" />
+		<result property="userName" column="USER_NAME" />
+		<result property="subjectCode" column="SUBJECT_CODE" />
+		<result property="subjectName" column="SUBJECT_NAME" />
+		<result property="userPhoneNo" column="USER_PHONE_NO" />
+		<result property="userDate" column="USER_DATE" />
+	</resultMap>
+
+	<insert id="insertUser">
+		INSERT INTO USER_TBL(USER_ID, USER_PW, USER_NAME,
+		USER_PHONE_NO, USER_DATE) VALUES(#{userId}, #{userPw}, #{userName},
+		#{userPhoneNo}, DEFAULT)
+	</insert>
+	<select id="selectOneByIdCnt" resultType="_int">
+		SELECT COUNT(*) FROM
+		USER_TBL WHERE USER_ID = #{userId}
+	</select>
+	<select id="selectLogin" resultType="_int">
+		SELECT COUNT(*) FROM
+		USER_TBL WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
+	</select>
+	<update id="updateUser">
+		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_NAME =
+		#{userName}, USER_PHONE_NO = #{userPhoneNo} WHERE USER_ID = #{userId}
+	</update>
+	<select id="selectOneById" resultMap="userResultMap">
+		SELECT * FROM USER_TBL
+		WHERE USER_ID = #{userId}
+	</select>
+	<delete id="deleteUser">
+		DELETE FROM USER_TBL WHERE USER_ID = #{userId}
+	</delete>
+	<select id="findPw" resultType="_int">
+		SELECT COUNT(*) FROM USER_TBL
+		WHERE USER_ID = #{userId} AND USER_NAME = #{userName} AND
+		USER_PHONE_NO = #{userPhoneNo}
+	</select>
+	<update id="updatePw">
+		UPDATE USER_TBL SET USER_PW = #{userPw} WHERE USER_ID
+		= #{userId}
+	</update>
+	<update id="plusCodeSubject">
+		UPDATE USER_TBL SET SUBJECT_CODE = #{subjectCode}
+		WHERE USER_ID = #{userId}
+	</update>
+	<update id="minusCodeSubject">
+		UPDATE USER_TBL SET SUBJECT_CODE = NULL WHERE USER_ID
+		= #{userId}
+	</update>
+	<!-- Subject테이블도 필요.. -->
+	<!-- <select id="selectAll" resultType="SubjectUser"> -->
+	<!-- 위와 같은식으로 하면 [null, null, null, ...] 이처럼 List안에 null로 채워짐 -->
+	<!-- 반드시 위에 resultMap으로 선언에서 받아오자 -->
+	<select id="selectAll" resultMap="subjectUserResultMap">
+		SELECT U.USER_ID, U.USER_PW,
+		U.USER_NAME, U.SUBJECT_CODE, S.SUBJECT_NAME, U.USER_PHONE_NO,
+		U.USER_DATE FROM USER_TBL U LEFT OUTER JOIN SUBJECT_TBL S
+		ON U.SUBJECT_CODE = S.SUBJECT_CODE
+		WHERE USER_ID != 'admin'
+	</select>
 </mapper>

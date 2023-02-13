@@ -63,10 +63,11 @@ public class UpdatePwServlet extends HttpServlet {
 
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		User user = new User(id, pwd);
 		UserService uService = new UserServiceImpl();
 
 		int result = -1;
-		result = uService.updatePw(id, pwd);
+		result = uService.updatePw(user);
 		if (result > 0) {
 			// 로그인 페이지로
 			response.sendRedirect("/register/login");

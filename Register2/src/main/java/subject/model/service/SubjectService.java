@@ -17,7 +17,7 @@ public interface SubjectService {
 	/**
 	 * 과목 조회 Service
 	 * 
-	 * @return list
+	 * @return sList
 	 */
 	public List<Subject> selectAll();
 
@@ -48,20 +48,18 @@ public interface SubjectService {
 	/**
 	 * 수강신청 더하기 Service
 	 * 
-	 * @param code
-	 * @param enrollNum
+	 * @param subject
 	 * @return result
 	 */
-	public int plusSubject(int code, Subject subject);
+	public int plusSubject(Subject subject);
 	
 	/**
 	 * 수강신청 빼기 Service
 	 * 
-	 * @param code
-	 * @param enrollNum
+	 * @param subject
 	 * @return result
 	 */
-	public int minusSubject(int code, Subject subject);
+	public int minusSubject(Subject subject);
 
 	/**
 	 * 수강신청한 과목 조회 Service

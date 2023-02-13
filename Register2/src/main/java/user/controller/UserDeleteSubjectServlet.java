@@ -14,6 +14,7 @@ import subject.model.service.SubjectServiceImpl;
 import subject.model.vo.Subject;
 import user.model.service.UserService;
 import user.model.service.UserServiceImpl;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class UserSubjectDeleteServlet
@@ -50,7 +51,7 @@ public class UserDeleteSubjectServlet extends HttpServlet {
 		SubjectService sService = new SubjectServiceImpl();
 		Subject subject = sService.selectSubject(code);
 		int resultSubject = -1;
-		resultSubject = sService.minusSubject(code, subject);
+		resultSubject = sService.minusSubject(subject);
 
 		// 2.
 		UserService uService = new UserServiceImpl();

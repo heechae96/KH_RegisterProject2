@@ -19,6 +19,12 @@ public class User {
 		this.userId = userId;
 		this.userPw = userPw;
 	}
+	
+	public User(String userId, int subjectCode) {
+		super();
+		this.userId = userId;
+		this.subjectCode = subjectCode;
+	}
 
 	public User(String userId, String userName, String userPhoneNo) {
 		super();
