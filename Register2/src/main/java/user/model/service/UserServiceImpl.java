@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import common.SqlSessionTemplate;
-import common.SubjectUser;
 import user.model.store.UserStore;
 import user.model.store.UserStoreImpl;
 import user.model.vo.User;
@@ -126,9 +125,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<SubjectUser> selectAll() {
+	public List<User> selectAll() {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
-		List<SubjectUser> suList = uStore.selectAll(session);
+		List<User> suList = uStore.selectAll(session);
 		return suList;
 	}
 

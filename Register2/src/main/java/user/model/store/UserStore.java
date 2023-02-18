@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import common.SubjectUser;
 import user.model.vo.User;
 
 public interface UserStore {
@@ -104,6 +103,6 @@ public interface UserStore {
 	 * @param conn
 	 * @return List<SubjectUser>
 	 */
-	public List<SubjectUser> selectAll(SqlSession session);
+	public List<User> selectAll(SqlSession session);
 
 }

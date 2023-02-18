@@ -6,7 +6,6 @@
 	<typeAliases>
 		<typeAlias type="subject.model.vo.Subject" alias="Subject"/>
 		<typeAlias type="user.model.vo.User" alias="User"/>
-		<typeAlias type="common.SubjectUser" alias="SubjectUser"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

@@ -2,7 +2,6 @@ package user.model.service;
 
 import java.util.List;
 
-import common.SubjectUser;
 import user.model.vo.User;
 
 public interface UserService {
@@ -92,6 +91,6 @@ public interface UserService {
 	 * 
 	 * @return subjectUserList
 	 */
-	public List<SubjectUser> selectAll();
+	public List<User> selectAll();
 
 }

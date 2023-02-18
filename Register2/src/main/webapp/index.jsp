@@ -10,7 +10,7 @@
 <title>메인페이지</title>
 <!-- favicon.ico 404 오류 방지 -->
 <link rel="shortcut icon" href="#">
-<link rel="stylesheet" href="/resources/userCss/index.css">
+<link rel="stylesheet" href="/resources/commonCss/index.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link

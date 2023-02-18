@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.SubjectUser;
 import user.model.service.UserService;
 import user.model.service.UserServiceImpl;
+import user.model.vo.User;
 
 /**
  * Servlet implementation class SelectUserServlet
@@ -35,7 +35,7 @@ public class SelectUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserService uService = new UserServiceImpl();
-		List<SubjectUser> suList = new ArrayList<SubjectUser>();
+		List<User> suList = new ArrayList<User>();
 		suList = uService.selectAll();
 		if (suList.isEmpty()) {
 			response.setContentType("text/html; charset=UTF-8");

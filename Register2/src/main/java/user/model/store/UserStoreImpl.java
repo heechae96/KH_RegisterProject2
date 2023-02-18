@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import common.SubjectUser;
 import user.model.vo.User;
 
 public class UserStoreImpl implements UserStore{
@@ -71,10 +70,9 @@ public class UserStoreImpl implements UserStore{
 	}
 
 	// 조인문 연산자가 필요했음
-	// 제 3의 테이블이 필요했음
 	@Override
-	public List<SubjectUser> selectAll(SqlSession session) {
-		List<SubjectUser> suList = session.selectList("userMapper.selectAll");
+	public List<User> selectAll(SqlSession session) {
+		List<User> suList = session.selectList("userMapper.selectAll");
 		return suList;
 	}
 

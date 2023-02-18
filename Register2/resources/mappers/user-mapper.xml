@@ -9,16 +9,6 @@
 		<result property="userPw" column="USER_PW" />
 		<result property="userName" column="USER_NAME" />
 		<result property="subjectCode" column="SUBJECT_CODE" />
-		<result property="userPhoneNo" column="USER_PHONE_NO" />
-		<result property="userDate" column="USER_DATE" />
-	</resultMap>
-	<!-- 꼭 아래와 똑같은 테이블이 만들어져 있지 않아도 된다.. -->
-	<!-- 두개의 테이블을 합친 클래스만 선언해서 사용 -->
-	<resultMap type="SubjectUser" id="subjectUserResultMap">
-		<id property="userId" column="USER_ID" />
-		<result property="userPw" column="USER_PW" />
-		<result property="userName" column="USER_NAME" />
-		<result property="subjectCode" column="SUBJECT_CODE" />
 		<result property="subjectName" column="SUBJECT_NAME" />
 		<result property="userPhoneNo" column="USER_PHONE_NO" />
 		<result property="userDate" column="USER_DATE" />
@@ -68,12 +58,14 @@
 	<!-- Subject테이블도 필요.. -->
 	<!-- <select id="selectAll" resultType="SubjectUser"> -->
 	<!-- 위와 같은식으로 하면 [null, null, null, ...] 이처럼 List안에 null로 채워짐 -->
+	<!-- 컬럼의 속성을 맵핑하지 못함 -->
 	<!-- 반드시 위에 resultMap으로 선언에서 받아오자 -->
-	<select id="selectAll" resultMap="subjectUserResultMap">
-		SELECT U.USER_ID, U.USER_PW,
-		U.USER_NAME, U.SUBJECT_CODE, S.SUBJECT_NAME, U.USER_PHONE_NO,
-		U.USER_DATE FROM USER_TBL U LEFT OUTER JOIN SUBJECT_TBL S
-		ON U.SUBJECT_CODE = S.SUBJECT_CODE
-		WHERE USER_ID != 'admin'
+	<select id="selectAll" resultMap="userResultMap">
+		SELECT * FROM USER_TBL U LEFT
+		OUTER JOIN SUBJECT_TBL S
+		ON
+		U.SUBJECT_CODE = S.SUBJECT_CODE
+		WHERE USER_ID
+		!= 'admin'
 	</select>
 </mapper>

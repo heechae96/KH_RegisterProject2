@@ -3,23 +3,26 @@ package user.model.vo;
 import java.sql.Timestamp;
 
 public class User {
+	// 이용자 조회를 위해 SubjectUser VO를 추가했지만
+	// User VO로 통합(subjectName 한 개 추가)
 	private String userId;
 	private String userPw;
 	private String userName;
 	private int subjectCode;
+	private String subjectName;
 	private String userPhoneNo;
 	private Timestamp userDate;
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public User(String userId, String userPw) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
 	}
-	
+
 	public User(String userId, int subjectCode) {
 		super();
 		this.userId = userId;
@@ -40,13 +43,15 @@ public class User {
 		this.userName = userName;
 		this.userPhoneNo = userPhoneNo;
 	}
-	
-	public User(String userId, String userPw, String userName, int subjectCode, String userPhoneNo, Timestamp userDate) {
+
+	public User(String userId, String userPw, String userName, int subjectCode, String subjectName, String userPhoneNo,
+			Timestamp userDate) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userName = userName;
 		this.subjectCode = subjectCode;
+		this.subjectName = subjectName;
 		this.userPhoneNo = userPhoneNo;
 		this.userDate = userDate;
 	}
@@ -83,6 +88,14 @@ public class User {
 		this.subjectCode = subjectCode;
 	}
 
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
 	public String getUserPhoneNo() {
 		return userPhoneNo;
 	}
@@ -101,8 +114,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", subjectCode="
-				+ subjectCode + ", userPhoneNo=" + userPhoneNo + ", userDate=" + userDate + "]";
+		return "SubjectUser [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", subjectCode="
+				+ subjectCode + ", subjectName=" + subjectName + ", userPhoneNo=" + userPhoneNo + ", userDate="
+				+ userDate + "]";
 	}
-	
+
 }
