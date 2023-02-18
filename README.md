@@ -16,7 +16,7 @@
     - Spring Framework을 이용 할 것
     - 페이징 처리 기법을 이용해 볼 것
 3. 보완 사항
-    - [ ] Youtube IFrame Player API을 사용해 메인 화면 꾸미기
+    - [x] Youtube IFrame Player API을 사용해 메인 화면 꾸미기
     - [ ] 부트스트랩을 사용해 css요소 추가
     
 # 5차 미니 프로젝트
