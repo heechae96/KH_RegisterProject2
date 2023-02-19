@@ -148,7 +148,7 @@
 			window.open(url, name, options);
 		}
 		function logout() {
-			if(confirm("정말로 로그아웃 하시겠습니까?")){
+			if(confirm("정말 로그아웃 하시겠습니까?")){
 				return true;
 			}else{
 				return false;
