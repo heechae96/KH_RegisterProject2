@@ -21,7 +21,7 @@
 		<div id="container">
 			<header>
 				<div id="user">
-					<a href="/login"> <img src="/resources/img/login.png"
+					<a href="/user/login"> <img src="/resources/img/login.png"
 						alt="로그인">
 					</a>
 				</div>
@@ -68,7 +68,7 @@
 						</div>
 						<div id="logout">
 							<img src="/resources/img/logout.png" alt="logout"> <a
-								href="/logout" onclick="return logout()">로그아웃</a>
+								href="/user/logout" onclick="return logout()">로그아웃</a>
 						</div>
 						<div id="update">
 							<img src="/resources/img/admin.png" alt="정보변경"> <a

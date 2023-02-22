@@ -21,15 +21,15 @@
 		</header>
 		<main>
 			<h1>로그인</h1>
-			<form action="/login" method="post">
+			<form action="/user/login" method="post">
 				<div id="inputBox">
 					<div id="id">
 						<img src="/resources/img/id.png" alt="아이디"> <input
-							type="text" name="id" placeholder="아이디" required autofocus>
+							type="text" name="userId" placeholder="아이디" required autofocus>
 					</div>
 					<div id="pwd">
 						<img src="/resources/img/pwd.png" alt="비밀번호"> <input
-							type="password" name="pw" placeholder="비밀번호" required>
+							type="password" name="userPw" placeholder="비밀번호" required>
 					</div>
 					<div id="submit">
 						<button type="submit">완료</button>
