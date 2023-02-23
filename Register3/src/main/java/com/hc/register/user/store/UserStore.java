@@ -6,4 +6,8 @@ public interface UserStore {
 
 	public int checkLogin(User user);
 
+	public User selectOneById(String userId);
+
+	public int updateUser(User user);
+
 }

@@ -19,4 +19,16 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	@Override
+	public User selectOneById(String userId) {
+		User user = userStore.selectOneById(userId);
+		return user;
+	}
+
+	@Override
+	public int updateUser(User user) {
+		int result = userStore.updateUser(user);
+		return result;
+	}
+
 }

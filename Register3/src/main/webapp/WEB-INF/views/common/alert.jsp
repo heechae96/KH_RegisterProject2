@@ -8,8 +8,8 @@
 </head>
 <body>
 	<script type="text/javascript">
-		alert('${elert.elertMessage }')
-		location.href = '${elert.pageUrl }'
+		alert('${alert.alertMessage }')
+		location.href = '${alert.pageUrl }'
 	</script>
 </body>
 </html>

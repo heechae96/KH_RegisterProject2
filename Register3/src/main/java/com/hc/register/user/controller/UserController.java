@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hc.register.Elert;
+import com.hc.register.Alert;
 import com.hc.register.user.domain.User;
 import com.hc.register.user.service.UserService;
 
@@ -29,38 +29,88 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpServletResponse response, 
-			String userId, String userPw, @ModelAttribute User user, Model model) {
+	public String login(HttpServletRequest request, HttpServletResponse response, String userId, String userPw,
+			@ModelAttribute User user, Model model) {
+		try {
+			int result = -1;
+			result = userService.checkLogin(user);
 
-		int result = -1;
-		result = userService.checkLogin(user);
-
-		if (result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			return "common/main";
-		} else {
-			response.setContentType("text/html; charset=UTF-8");
-			try {
-				Elert elert = new Elert("/user/login", "아이디 또는 비밀번호를 다시 확인해주세요");
-				model.addAttribute("elert", elert);
+			if (result > 0) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				return "common/main";
+			} else {
+				Alert alert = new Alert("/user/login", "아이디 또는 비밀번호를 다시 확인해주세요");
+				model.addAttribute("alert", alert);
 				return "common/alert";
-			} catch (Exception e) {
-				model.addAttribute("msg", e.getMessage());
 			}
-			return "redirect:/user/login";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
 		}
-
 	}
-	
+
 	// 로그아웃
 	@RequestMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session != null) {
-			session.invalidate(); 
+	public String logout(HttpServletRequest request, Model model) {
+		try {
+			HttpSession session = request.getSession();
+			if (session != null) {
+				session.invalidate();
+				return "common/main";
+			} else {
+				return "common/main";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
 		}
-		return "common/main";
 	}
-	
+
+	// 정보변경
+	@RequestMapping("/update")
+	public String modify(HttpSession session, Model model) {
+		try {
+			User user = (User) session.getAttribute("user");
+			if (user != null) {
+				String userId = user.getUserId();
+				user = userService.selectOneById(userId);
+				model.addAttribute("user", user);
+				return "user/changeInfo";
+			} else {
+				Alert alert = new Alert("/user/login", "로그인이 필요한 작업입니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String modify(String userId, String userPw, String userName, String userPhoneNo, @ModelAttribute User user,
+			Model model) {
+		try {
+			int result = -1;
+			result = userService.updateUser(user);
+			if (result > 0) {
+				Alert alert = new Alert("/user/update", "정보수정에 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/update", "정보수정에 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 }

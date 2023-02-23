@@ -19,7 +19,17 @@
 		WHERE USER_ID = #{userId} AND USER_PW = #{userPw}
 	</select>
 	
-	<insert id="insertUser">
+	<select id="selectOneById" resultMap="userResultMap">
+		SELECT * FROM USER_TBL
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<update id="updateUser">
+		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_NAME =
+		#{userName}, USER_PHONE_NO = #{userPhoneNo} WHERE USER_ID = #{userId}
+	</update>
+	
+	<!-- <insert id="insertUser">
 		INSERT INTO USER_TBL(USER_ID, USER_PW, USER_NAME,
 		USER_PHONE_NO, USER_DATE) VALUES(#{userId}, #{userPw}, #{userName},
 		#{userPhoneNo}, DEFAULT)
@@ -28,16 +38,6 @@
 	<select id="selectOneByIdCnt" resultType="_int">
 		SELECT COUNT(*) FROM
 		USER_TBL WHERE USER_ID = #{userId}
-	</select>
-	
-	<update id="updateUser">
-		UPDATE USER_TBL SET USER_PW = #{userPw}, USER_NAME =
-		#{userName}, USER_PHONE_NO = #{userPhoneNo} WHERE USER_ID = #{userId}
-	</update>
-	
-	<select id="selectOneById" resultMap="userResultMap">
-		SELECT * FROM USER_TBL
-		WHERE USER_ID = #{userId}
 	</select>
 	
 	<delete id="deleteUser">
@@ -65,8 +65,8 @@
 		= #{userId}
 	</update>
 	
-	<!-- 두 테이블 모두 필요한 경우 -->
-	<!-- 결과물은 user테이블로 -->
+	두 테이블 모두 필요한 경우
+	결과물은 user테이블로
 	<select id="selectAll" resultMap="userResultMap">
 		SELECT * FROM USER_TBL U LEFT
 		OUTER JOIN SUBJECT_TBL S
@@ -74,5 +74,5 @@
 		U.SUBJECT_CODE = S.SUBJECT_CODE
 		WHERE USER_ID
 		!= 'admin'
-	</select>
+	</select> -->
 </mapper>

@@ -26,26 +26,26 @@
 		</header>
 		<main>
 			<h1>마이페이지</h1>
-			<form action="/register/update" method="post">
+			<form action="/user/update" method="post">
 				<div id="inputBox">
 					<div id="id">
-						<span>아이디</span> <input type="text" id="id" name="id"
+						<span>아이디</span> <input type="text" id="id" name="userId"
 							value="${user.userId }" readonly>
 					</div>
 					<div id="pw">
-						<span>비밀번호</span> <input type="text" id="pw" name="pw"
+						<span>비밀번호</span> <input type="text" id="pw" name="userPw"
 							value="${user.userPw }">
 					</div>
 					<div id="name">
-						<span>이름</span> <input type="text" id="name" name="name"
+						<span>이름</span> <input type="text" id="name" name="userName"
 							value="${user.userName }">
 					</div>
 					<div id="phone">
-						<span>휴대번호</span> <input type="tel" id="phone" name="phone"
+						<span>휴대번호</span> <input type="tel" id="phone" name="userPhoneNo"
 							value="${user.userPhoneNo }">
 					</div>
 					<div id="date">
-						<span>가입일</span> <input type="datetime" id="date" name="date"
+						<span>가입일</span> <input type="datetime" id="date" 
 							value="${user.userDate }" readonly>
 					</div>
 					<div id="submit">

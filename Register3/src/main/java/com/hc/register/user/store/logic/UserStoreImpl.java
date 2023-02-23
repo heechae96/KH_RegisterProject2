@@ -18,4 +18,16 @@ public class UserStoreImpl implements UserStore{
 		int result = session.selectOne("userMapper.checkLogin", user);
 		return result;
 	}
+
+	@Override
+	public User selectOneById(String userId) {
+		User user = session.selectOne("userMapper.selectOneById", userId);
+		return user;
+	}
+
+	@Override
+	public int updateUser(User user) {
+		int result = session.update("userMapper.updateUser", user);
+		return result;
+	}
 }

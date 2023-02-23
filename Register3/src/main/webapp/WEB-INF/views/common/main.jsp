@@ -72,7 +72,7 @@
 						</div>
 						<div id="update">
 							<img src="/resources/img/admin.png" alt="정보변경"> <a
-								href="/userInfo?id=${sessionScope.user.userId }">관리자님</a>
+								href="/user/update">관리자님</a>
 						</div>
 					</nav>
 				</header>
@@ -115,7 +115,7 @@
 						</div>
 						<div id="modify">
 							<img src="/resources/img/user.png" alt="마이페이지"> <a
-								href="/userInfo?id=${sessionScope.user.userId }">${sessionScope.user.userId }</a>
+								href="/user/update">${sessionScope.user.userId }</a>
 						</div>
 					</nav>
 				</header>
