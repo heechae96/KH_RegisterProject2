@@ -25,23 +25,23 @@
 		</header>
 		<main>
 			<h1>회원가입</h1>
-			<form action="/register/enroll" method="post" name="joinform"
+			<form action="/user/enroll" method="post" name="joinform"
 				onsubmit="return dupIdChk()">
 				<div id="inputBox">
 					<button type="button" id="doubleChk" onclick="chk()">중복확인</button>
 					<input type="hidden" name="chkUserId">
 					<div id="id">
-						<input type="text" name="viewId" placeholder="아이디" required
+						<input type="text" name="userId" placeholder="아이디" required
 							autofocus>
 					</div>
 					<div id="pw">
-						<input type="password" name="pw" placeholder="비밀번호" required>
+						<input type="password" name="userPw" placeholder="비밀번호" required>
 					</div>
 					<div id="name">
-						<input type="text" name="name" placeholder="이름" required>
+						<input type="text" name="userName" placeholder="이름" required>
 					</div>
 					<div id="phone">
-						<input type="tel" name="number" placeholder="'-'를 제외한 휴대번호"
+						<input type="tel" name="userPhoneNo" placeholder="'-'를 제외한 휴대번호"
 							required>
 					</div>
 					<div id="submit">
@@ -70,12 +70,12 @@
 			window.open(url, name, options);
 		}
 		function chk() {
-			if (document.joinform.viewId.value == "") {
-				alert("사용자 아이디를 입력해주세요.");
-				document.joinform.viewId.focus();
+			if (document.joinform.userId.value == "") {
+				alert("사용자 아이디를 입력해주세요");
+				document.joinform.userId.focus();
 				return;
 			}
-			var url = "/register/idChk?id=" + document.joinform.viewId.value;
+			var url = "/user/idChk?userId=" + document.joinform.userId.value;
 			window.open(url, "chkIdForm", "width=800, height=500");
 		}
 

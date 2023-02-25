@@ -10,4 +10,10 @@ public interface UserStore {
 
 	public int updateUser(User user);
 
+	public int findPw(User user);
+
+	public int updatePw(User user);
+
+	public int enroll(User user);
+
 }

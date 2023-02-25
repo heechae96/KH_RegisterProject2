@@ -36,10 +36,10 @@
 					</div>
 					<div id="action">
 						<div id="find">
-							<a href="javascript:void(0)"><p onclick="goFindPw()">비밀번호 찾기</p></a>
+							<a href="/user/findPw"><p>비밀번호 찾기</p></a>
 						</div>
 						<div id="enroll">
-							<a href="javascript:void(0)"><p onclick="goEnroll()">회원가입</p></a>
+							<a href="/user/enroll"><p>회원가입</p></a>
 						</div>
 					</div>
 				</div>
@@ -63,12 +63,6 @@
 			var name = "popup";
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
-		}
-		function goEnroll(){
-			location.href = ("/enroll");
-		}
-		function goFindPw(){
-			location.href = ("/findPw");
 		}
 	</script>
 </body>

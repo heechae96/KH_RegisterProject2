@@ -30,4 +30,23 @@ public class UserStoreImpl implements UserStore{
 		int result = session.update("userMapper.updateUser", user);
 		return result;
 	}
+
+	@Override
+	public int findPw(User user) {
+		int result = session.selectOne("userMapper.findPw", user);
+		return result;
+	}
+
+	@Override
+	public int updatePw(User user) {
+		int result = session.update("userMapper.updatePw", user);
+		return result;
+	}
+
+	@Override
+	public int enroll(User user) {
+		int result = session.insert("userMapper.enroll", user);
+		return result;
+	}
+
 }

@@ -25,16 +25,16 @@
 		</header>
 		<main>
 			<h1>비밀번호 찾기</h1>
-			<form action="/register/findPw" method="post">
+			<form action="/user/findPw" method="post">
 				<div id="inputBox">
 					<div id="id">
-						<input type="text" name="id" placeholder="아이디" autofocus required>
+						<input type="text" name="userId" placeholder="아이디" autofocus required>
 					</div>
 					<div id="name">
-						<input type="text" name="name" placeholder="이름" required>
+						<input type="text" name="userName" placeholder="이름" required>
 					</div>
 					<div id="phone">
-						<input type="tel" name="phone" placeholder="휴대폰 번호" required>
+						<input type="tel" name="userPhoneNo" placeholder="휴대폰 번호" required>
 					</div>
 					<div id="submit">
 						<button type="submit">완료</button>

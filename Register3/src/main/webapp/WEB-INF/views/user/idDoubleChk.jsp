@@ -18,43 +18,38 @@
 
 <body>
 	<main>
-		<form action="/register/idChk" method="get" name="idCheckForm">
+		<form action="/user/idChk" method="get" name="idCheckForm">
 			<h1>아이디 중복 확인</h1>
 			<div id="inputBox">
 				<div id="idBox">
-					<input type="text" name="id" value="${id}"> <input
-						type="submit" value="중복 체크">
+					<input type="text" name="userId" value="${id}" required autofocus> 
+					<input type="submit" value="중복 체크">
 				</div>
 				<div id="textBox">
 					<c:choose>
-						<c:when test="${result==1}">
-							<h1>${id}는 이미 사용중인 아이디입니다.</h1>
-						</c:when>
-						<c:when test="${result==0}">
+						<c:when test="${user eq null}">
 							<h1>${id}는 사용 가능한 아이디입니다.</h1>
 						</c:when>
-						<c:otherwise>
-							<h1>오류 발생 result:${result}</h1>
-						</c:otherwise>
+						<c:when test="${user ne null}">
+							<h1>${id}는 이미 사용중인 아이디입니다.</h1>
+						</c:when>
 					</c:choose>
 				</div>
 				<div id="buttonBox">
 					<c:choose>
-						<c:when test="${result==0}">
+						<c:when test="${user eq null}">
 							<input type="button" value="사용" class="choice" onclick="idOk()">
 						</c:when>
 					</c:choose>
-					<input type="button" onclick="window.close()" class="choice"
-						value="취소" />
+					<input type="button" onclick="window.close()" class="choice" value="취소" />
 				</div>
 			</div>
 		</form>
 	</main>
 	<script>
 		function idOk() {
-			opener.joinform.viewId.value = document.idCheckForm.id.value;
-			opener.joinform.chkUserId.value = document.idCheckForm.id.value;
-
+			opener.joinform.userId.value = document.idCheckForm.userId.value;
+			opener.joinform.chkUserId.value = document.idCheckForm.userId.value;
 			self.close();
 		}
 	</script>

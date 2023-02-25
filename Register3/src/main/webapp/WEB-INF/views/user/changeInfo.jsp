@@ -34,15 +34,15 @@
 					</div>
 					<div id="pw">
 						<span>비밀번호</span> <input type="text" id="pw" name="userPw"
-							value="${user.userPw }">
+							value="${user.userPw }" required>
 					</div>
 					<div id="name">
 						<span>이름</span> <input type="text" id="name" name="userName"
-							value="${user.userName }">
+							value="${user.userName }" required>
 					</div>
 					<div id="phone">
 						<span>휴대번호</span> <input type="tel" id="phone" name="userPhoneNo"
-							value="${user.userPhoneNo }">
+							value="${user.userPhoneNo }" required>
 					</div>
 					<div id="date">
 						<span>가입일</span> <input type="datetime" id="date" 
@@ -51,7 +51,7 @@
 					<div id="submit">
 						<button type="submit">수정하기</button>
 					</div>
-					<c:if test="${sessionScope.id ne 'admin'}">
+					<c:if test="${sessionScope.user.userId ne 'admin'}">
 						<div id="action">
 							<div id="bye">
 								<a href="javascript:void(0)"><p onclick="check()">회원탈퇴</p></a>
@@ -83,7 +83,7 @@
 		}
 		function check() {
 			if (confirm("주의! 회원탈퇴 이후에는 복구 할 수 없습니다. \n정말로 회원탈퇴를 진행하시겠습니까?")) {
-				location.href = "/register/delete?id=${sessionScope.id }";
+				location.href = "/user/delete?userid=${sessionScope.user.userId }";
 			}
 		}
 	</script>

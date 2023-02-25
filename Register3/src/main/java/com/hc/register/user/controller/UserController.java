@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.hc.register.Alert;
 import com.hc.register.user.domain.User;
 import com.hc.register.user.service.UserService;
+import com.hc.register.user.store.UserStore;
 
 @Controller
 @RequestMapping("/user")
@@ -21,6 +22,104 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	// 회원가입
+	@RequestMapping("/enroll")
+	public String enroll() {
+		return "user/enroll";
+	}
+
+	@RequestMapping(value = "/enroll", method = RequestMethod.POST)
+	public String enroll(@ModelAttribute User user, String userId, String userPw, String userName, String userPhoneNo,
+			Model model) {
+		try {
+			int result = -1;
+			result = userService.enroll(user);
+			if (result > 0) {
+				Alert alert = new Alert("/user/login", "회원가입에 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/enroll", "회원가입에 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 회원가입시 아이디 중복 확인
+	@RequestMapping("idChk")
+	public String idChk(String userId, @ModelAttribute User user, Model model) {
+		try {
+			// user가 null이든 null이 아니든 일단 결과를 보냄
+			// 새로 열리는 창에 결과를 반환
+			user = userService.selectOneById(userId);
+			model.addAttribute("id", userId);
+			model.addAttribute("user", user);
+			return "user/idDoubleChk";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 비밀번호 찾기
+	@RequestMapping("/findPw")
+	public String findPw() {
+		return "user/findPassword";
+	}
+
+	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
+	public String findPw(@ModelAttribute User user, String userId, String userName, String userPhoneNo, Model model) {
+		try {
+			int result = -1;
+			result = userService.findPw(user);
+			if (result > 0) {
+				model.addAttribute("user", user);
+				return "user/changePassWord";
+			} else {
+				Alert alert = new Alert("/user/findPw", "해당 정보가 일치하지 않습니다 \\n다시 확인하고 시도해주세요");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 비밀번호 수정
+	@RequestMapping("updatePw")
+	public String updatePw() {
+		return "user/changePassWord";
+	}
+
+	@RequestMapping(value = "updatePw", method = RequestMethod.POST)
+	public String updatePw(String userId, String userPw, @ModelAttribute User user, Model model) {
+		try {
+			int result = -1;
+			result = userService.updatePw(user);
+			if (result > 0) {
+				Alert alert = new Alert("/user/login", "비밀번호 수정에 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/updatePw", "비밀번호 수정에 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
 
 	// 로그인
 	@RequestMapping("/login")
@@ -80,7 +179,7 @@ public class UserController {
 				model.addAttribute("user", user);
 				return "user/changeInfo";
 			} else {
-				Alert alert = new Alert("/user/login", "로그인이 필요한 작업입니다");
+				Alert alert = new Alert("/user/login", "로그인이 필요합니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			}

@@ -31,4 +31,22 @@ public class UserServiceImpl implements UserService{
 		return result;
 	}
 
+	@Override
+	public int findPw(User user) {
+		int result = userStore.findPw(user);
+		return result;
+	}
+
+	@Override
+	public int updatePw(User user) {
+		int result = userStore.updatePw(user);
+		return result;
+	}
+
+	@Override
+	public int enroll(User user) {
+		int result = userStore.enroll(user);
+		return result;
+	}
+
 }

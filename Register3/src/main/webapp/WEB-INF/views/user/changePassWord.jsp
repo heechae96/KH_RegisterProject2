@@ -25,13 +25,13 @@
 		</header>
 		<main>
 			<h1>비밀번호 변경</h1>
-			<form action="/register/updatePw" method="post">
+			<form action="/user/updatePw" method="post">
 				<div id="inputBox">
 					<div id="id">
-						<input type="hidden" name="id" value="${user.userId }">
+						<input type="hidden" name="userId" value="${user.userId }" readonly>
 					</div>
 					<div id="pwd">
-						<input type="text" name="pwd" placeholder="새로운 비밀번호">
+						<input type="text" name="userPw" placeholder="새로운 비밀번호" autofocus required">
 					</div>
 					<div id="submit">
 						<button>완료</button>
