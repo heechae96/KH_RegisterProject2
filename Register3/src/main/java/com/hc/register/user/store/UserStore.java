@@ -1,5 +1,7 @@
 package com.hc.register.user.store;
 
+import java.util.List;
+
 import com.hc.register.user.domain.User;
 
 public interface UserStore {
@@ -15,5 +17,7 @@ public interface UserStore {
 	public int updatePw(User user);
 
 	public int enroll(User user);
+
+	public List<User> selectAll();
 
 }

@@ -56,15 +56,15 @@
 					<nav>
 						<div id="insert">
 							<img src="/resources/img/add.png" alt="insert"> <a
-								href="/admin/insert">과목 추가</a>
+								href="/subject/insert">과목 추가</a>
 						</div>
 						<div id="select1">
 							<img src="/resources/img/checked.png" alt="chechk & modify">
-							<a href="/admin/select">개설 과목 조회</a>
+							<a href="/subject/select">개설 과목 조회</a>
 						</div>
 						<div id="select2">
 							<img src="/resources/img/user.png" alt="chechk & modify"> <a
-								href="/admin/selectUser">이용자 조회</a>
+								href="/user/select">이용자 조회</a>
 						</div>
 						<div id="logout">
 							<img src="/resources/img/logout.png" alt="logout"> <a

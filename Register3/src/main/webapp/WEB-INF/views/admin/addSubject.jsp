@@ -20,12 +20,12 @@
 	<div id="container">
 		<header>
 			<div id="home">
-				<a href="/"><img src="/resources/img/home.png" alt="홈"></a>
+				<a href="/home"><img src="/resources/img/home.png" alt="홈"></a>
 			</div>
 		</header>
 		<main>
 			<h1>과목 추가</h1>
-			<form action="/admin/insert" method="post">
+			<form action="/subject/insert" method="post" onsubmit="return dateChk()">
 				<div id="inputBox">
 					<div id="subjectName">
 						<input type="text" name="subjectName" placeholder="과목명" required>
@@ -34,15 +34,15 @@
 						<input type="text" name="name" placeholder="교수명" required>
 					</div>
 					<div id="maxNum">
-						<input type="number" name="maxNum" placeholder="인원 제한" required>
+						<input type="number" name="maxNo" min=1 placeholder="인원 제한" required>
 					</div>
 					<!-- 타입이 date인 경우 placeholder가 연.월.일로 고정됨 -->
 					<div id="start">
-						<input type="date" name="start" data-placeholder="개강일" required
+						<input type="date" name="startDate" data-placeholder="개강일" required
 							aria-required="true">
 					</div>
 					<div id="end">
-						<input type="date" name="end" data-placeholder="종강일" required
+						<input type="date" name="endDate" data-placeholder="종강일" required
 							aria-required="true">
 					</div>
 					<div id="submit">
@@ -70,6 +70,17 @@
 			var name = "popup";
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
+		}
+		
+		function dateChk() {
+			let start = document.querySelector('input[name=startDate]');
+			let end = document.querySelector('input[name=endDate]');
+			if(start.value > end.value){
+				alert("종강일이 개강일보다 빠를 수 없습니다");
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </body>

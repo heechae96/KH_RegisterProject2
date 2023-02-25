@@ -1,5 +1,7 @@
 package com.hc.register.user.store.logic;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -47,6 +49,12 @@ public class UserStoreImpl implements UserStore{
 	public int enroll(User user) {
 		int result = session.insert("userMapper.enroll", user);
 		return result;
+	}
+
+	@Override
+	public List<User> selectAll() {
+		List<User> list = session.selectList("userMapper.selectAll");
+		return list;
 	}
 
 }

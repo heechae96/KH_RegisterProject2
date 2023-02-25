@@ -13,20 +13,20 @@
 		<result property="endDate" column="END_DATE" />
 	</resultMap>
 
-	<!-- <insert id="insertSubject">
+	 <insert id="insert">
 		INSERT INTO SUBJECT_TBL VALUES(#{subjectName}
-		,SUB_SEQUENCE.NEXTVAL, #{name}, DEFAULT, #{maxNo}, #{startDate},
-		#{endDate})
+		,SUB_SEQUENCE.NEXTVAL, #{name}, DEFAULT, #{maxNo}, #{startDate}, #{endDate})
 	</insert>
-
+	
 	<select id="selectAll" resultMap="subjectResultMap">
 		SELECT * FROM SUBJECT_TBL
 	</select>
 
-	<delete id="deleteSubject">
-		DELETE FROM SUBJECT_TBL WHERE SUBJECT_CODE =
-		#{subjectCode}
+	<delete id="delete">
+		DELETE FROM SUBJECT_TBL WHERE SUBJECT_CODE = #{subjectCode}
 	</delete>
+	
+	<!--
 
 	<update id="updateSubject">
 		UPDATE SUBJECT_TBL SET SUBJECT_NAME = #{subjectName},

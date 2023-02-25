@@ -21,7 +21,7 @@
 	<div id="container">
 		<header>
 			<div id="home">
-				<a href="/"><img src="/resources/img/home.png" alt="홈"></a>
+				<a href="/home"><img src="/resources/img/home.png" alt="홈"></a>
 			</div>
 		</header>
 		<main>
@@ -83,7 +83,7 @@
 			let modConfirm = confirm('정말 수정하시겠습니까?');
 			var code = event.getAttribute('class');
 			if (modConfirm) {
-				location.href = "/admin/update?code=" + code;
+				location.href = "/subject/update?subjectCode=" + code;
 			} else {
 				return;
 			}
@@ -92,7 +92,7 @@
 			let delConfirm = confirm('정말 삭제하시겠습니까?');
 			var code = event.getAttribute('class');
 			if (delConfirm) {
-				location.href = "/admin/delete?code=" + code;
+				location.href = "/subject/delete?subjectCode=" + code;
 			} else {
 				return;
 			}

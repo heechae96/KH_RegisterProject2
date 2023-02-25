@@ -47,7 +47,7 @@ main{
     }
     #tableBox{
         height: 90%;
-        width: 90%;
+        width: 100%;
         margin-bottom: 53.6px;
     }
     table{
@@ -60,10 +60,10 @@ main{
         height: 50px;
     }
     th:nth-child(1){
-        width: 30%;
+        width: 26%;
     }
     th:nth-child(-n+6):nth-child(n+7){
-        width: 10%;
+        width: 12%;
     }
     th:not(:nth-child(1), :nth-child(-n+6):nth-child(n+7)){
         width: 8.33%;

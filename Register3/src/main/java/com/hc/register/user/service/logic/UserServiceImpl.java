@@ -1,5 +1,7 @@
 package com.hc.register.user.service.logic;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,12 @@ public class UserServiceImpl implements UserService{
 	public int enroll(User user) {
 		int result = userStore.enroll(user);
 		return result;
+	}
+
+	@Override
+	public List<User> selectAll() {
+		List<User> list = userStore.selectAll();
+		return list;
 	}
 
 }

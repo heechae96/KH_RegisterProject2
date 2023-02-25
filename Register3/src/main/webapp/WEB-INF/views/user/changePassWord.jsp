@@ -20,7 +20,7 @@
 	<div id="container">
 		<header>
 			<div id="home">
-				<a href="/"><img src="/resources/img/home.png" alt="홈"></a>
+				<a href="/home"><img src="/resources/img/home.png" alt="홈"></a>
 			</div>
 		</header>
 		<main>

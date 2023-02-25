@@ -1,5 +1,7 @@
 package com.hc.register.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hc.register.Alert;
+import com.hc.register.subject.domain.Subject;
 import com.hc.register.user.domain.User;
 import com.hc.register.user.service.UserService;
-import com.hc.register.user.store.UserStore;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +25,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	// 이용자 전용
+	
 	// 회원가입
 	@RequestMapping("/enroll")
 	public String enroll() {
@@ -212,4 +216,25 @@ public class UserController {
 		}
 	}
 
+	// 관리자 전용
+	
+	// 이용자 조회
+	@RequestMapping("select")
+	public String selectAll(Model model) {
+		try {
+			List<User> list = userService.selectAll();
+			if (list.size() == 0) {
+				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				model.addAttribute("list", list);
+				return "admin/selectUser";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
 }
