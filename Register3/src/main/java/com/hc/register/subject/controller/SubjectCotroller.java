@@ -112,20 +112,29 @@ public class SubjectCotroller {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@ModelAttribute Subject subject, String subjectName, String name, int maxNo, Date startDate,
-			Date endDate, int subjectCode, Model model) {
+	public String update(@ModelAttribute Subject subject, String subjectName, int subjectCode, String name, int maxNo, Date startDate,
+			Date endDate, Model model) {
 		try {
 			int result = -1;
-			result = subjectService.update(subject);
-			if (result > 0) {
-				Alert alert = new Alert("/subject/select", "과목수정에 성공했습니다");
-				model.addAttribute("alert", alert);
-				return "common/alert";
+			Subject prevSubject = subjectService.select(subjectCode);
+			int enrollNo = prevSubject.getEnrollNo();
+			if (maxNo >= enrollNo) {
+				result = subjectService.update(subject);
+				if (result > 0) {
+					Alert alert = new Alert("/subject/select", "과목수정에 성공했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				} else {
+					Alert alert = new Alert("/subject/select", "과목수정에 실패했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				}
 			} else {
-				Alert alert = new Alert("/subject/update", "과목수정에 실패했습니다");
+				Alert alert = new Alert("/subject/select", "인원 제한은 반드시 신청 인원과 같거나 보다 높아야 합니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
