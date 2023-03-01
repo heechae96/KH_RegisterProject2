@@ -1,8 +1,11 @@
 ## 1. 주요 기능과 화면 구성
-![수강 신청 사이트](https://user-images.githubusercontent.com/90540377/216827946-2440cb69-6125-42a2-ade3-30b197ff0596.png)
+![수강신청사이트](https://user-images.githubusercontent.com/90540377/222225179-602d3114-d5aa-44ae-9203-12008bce79ce.png)
 
 ## 2. 테이블 ERD
-<img width="549" alt="테이블 ERD" src="https://user-images.githubusercontent.com/90540377/216829015-1867f439-e0eb-436a-8f8e-54fb22c8eb68.png">
+![테이블 ERD](https://user-images.githubusercontent.com/90540377/222235746-dbc7deb7-87ba-40fd-8bce-df060508b165.png)
+
+## 3. 클래스 UML
+![클래스 다이어그램](https://user-images.githubusercontent.com/90540377/222228098-d34d7256-e6d3-4883-a7f3-c71d3eaa62ee.png)
 
 ## 3. 이용자 초기 화면
 <img width="984" alt="이용자화면" src="https://user-images.githubusercontent.com/90540377/216828703-4157038d-cd22-4fd9-b346-2d0402b25f9c.png">
@@ -14,10 +17,9 @@
 1. 1~5차시 미니 프로젝트와 동일한 주제    
 2. 추가 요구 사항
     - Spring Framework을 이용 할 것
-    - 페이징 처리 기법을 이용해 볼 것
 3. 보완 사항
     - [x] Youtube IFrame Player API을 사용해 메인 화면 꾸미기
-    - [ ] 부트스트랩을 사용해 css요소 추가
+    - [x] alert 클래스로 빼서 중복 코드 제거 할 
     
 # 5차 미니 프로젝트
 1. 1~4차시 미니 프로젝트와 동일한 주제    
