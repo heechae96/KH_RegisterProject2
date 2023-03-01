@@ -50,7 +50,7 @@ main{
     }
 	form{
     	height: 90%;
-        width: 90%;
+        width: 100%;
     }
     
     #viewBox{
@@ -89,10 +89,10 @@ main{
         width: 10%;
     }
     #select th:nth-child(1){
-        width: 44%;
+        width: 30%;
     }
     #select th:not(:nth-child(1)){
-        width: 8%;
+        width: 10%;
     }
     th{
         background-color: #68B984;

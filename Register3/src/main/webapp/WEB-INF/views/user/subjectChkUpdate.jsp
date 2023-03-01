@@ -30,6 +30,33 @@
 				<div id="viewBox">
 					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
 					<input type="hidden" name="subjectCode">
+					<div id="select">
+						<h2>신청 과목</h2>
+						<table>
+							<tr>
+								<th>과목명</th>
+								<th>과목코드</th>
+								<th>교수명</th>
+								<th>신청 인원</th>
+								<th>인원 제한</th>
+								<th>개강일</th>
+								<th>종강일</th>
+								<th>삭제</th>
+							</tr>
+							<tr>
+								<td>${subject.subjectName }</td>
+								<td>${subject.subjectCode }</td>
+								<td>${subject.name }</td>
+								<td>${subject.enrollNo }</td>
+								<td>${subject.maxNo }</td>
+								<td>${subject.startDate }</td>
+								<td>${subject.endDate }</td>
+								<td>
+									<button id="${subject.subjectCode }" onclick="delChk(this)">선택</button>
+								</td>
+							</tr>
+						</table>
+					</div>
 					<div id="view">
 						<h2>개설 과목</h2>
 						<table>
@@ -53,33 +80,6 @@
 									<td>${sub.endDate }</td>
 								</tr>
 							</c:forEach>
-						</table>
-					</div>
-					<div id="select">
-						<h2>신청 과목</h2>
-						<table>
-							<tr>
-								<th>과목명</th>
-								<th>과목코드</th>
-								<th>교수명</th>
-								<th>신청 인원</th>
-								<th>인원 제한</th>
-								<th>개강일</th>
-								<th>종강일</th>
-								<th>선택</th>
-							</tr>
-							<tr>
-								<td>${subject.subjectName }</td>
-								<td>${subject.subjectCode }</td>
-								<td>${subject.name }</td>
-								<td>${subject.enrollNo }</td>
-								<td>${subject.maxNo }</td>
-								<td>${subject.startDate }</td>
-								<td>${subject.endDate }</td>
-								<td>
-									<button id="${subject.subjectCode }" onclick="delChk(this)">삭제</button>
-								</td>
-							</tr>
 						</table>
 					</div>
 				</div>
