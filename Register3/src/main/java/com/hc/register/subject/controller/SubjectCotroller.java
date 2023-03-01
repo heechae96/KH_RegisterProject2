@@ -22,12 +22,12 @@ public class SubjectCotroller {
 	private SubjectService subjectService;
 
 	// 과목 추가
-	@RequestMapping("insert")
+	@RequestMapping("/insert")
 	public String insert() {
 		return "admin/addSubject";
 	}
 
-	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insert(@ModelAttribute Subject subject, String subjectName, String name, int maxNo, Date startDate,
 			Date endDate, Model model) {
 		try {
@@ -50,7 +50,7 @@ public class SubjectCotroller {
 	}
 
 	// 과목 조회
-	@RequestMapping("select")
+	@RequestMapping("/select")
 	public String selectAll(Model model) {
 		try {
 			List<Subject> list = subjectService.selectAll();
@@ -70,7 +70,7 @@ public class SubjectCotroller {
 	}
 
 	// 과목 삭제
-	@RequestMapping("delete")
+	@RequestMapping("/delete")
 	public String delete(int subjectCode, Model model) {
 		try {
 			int result = -1;
@@ -92,7 +92,7 @@ public class SubjectCotroller {
 	}
 
 	// 과목 수정
-	@RequestMapping("update")
+	@RequestMapping("/update")
 	public String update(int subjectCode, Model model) {
 		try {
 			Subject subject = subjectService.select(subjectCode);
@@ -111,7 +111,7 @@ public class SubjectCotroller {
 		}
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@ModelAttribute Subject subject, String subjectName, int subjectCode, String name, int maxNo, Date startDate,
 			Date endDate, Model model) {
 		try {
