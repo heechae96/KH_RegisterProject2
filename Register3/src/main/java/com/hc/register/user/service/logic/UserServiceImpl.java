@@ -57,4 +57,22 @@ public class UserServiceImpl implements UserService{
 		return list;
 	}
 
+	@Override
+	public int addSubjectCode(User user) {
+		int result = userStore.addSubjectCode(user);
+		return result;
+	}
+
+	@Override
+	public int removeSubjectCode(User user) {
+		int result = userStore.removeSubjectCode(user);
+		return result;
+	}
+
+	@Override
+	public int delete(String userId) {
+		int result = userStore.delete(userId);
+		return result;
+	}
+
 }

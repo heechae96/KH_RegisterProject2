@@ -96,6 +96,7 @@
 				</footer>
 			</div>
 		</c:if>
+		
 		<!-- 이용자인 경우 -->
 		<c:if test="${sessionScope.user.userId ne 'admin' }">
 			<div id="container">
@@ -103,15 +104,15 @@
 					<nav>
 						<div id="add">
 							<img src="/resources/img/add.png" alt="add"> <a
-								href="/select?id=${sessionScope.id }">수강 신청</a>
+								href="/user/selectSubject">수강 신청</a>
 						</div>
 						<div id="check">
 							<img src="/resources/img/checked.png" alt="chechk & modify">
-							<a href="/chkUpdate?id=${sessionScope.id }">확인 / 정정</a>
+							<a href="/user/updateSubject">확인 / 정정</a>
 						</div>
 						<div id="logout">
 							<img src="/resources/img/logout.png" alt="logout"> <a
-								href="/logout"  onclick="return logout()">로그아웃</a>
+								href="/user/logout" onclick="return logout()">로그아웃</a>
 						</div>
 						<div id="modify">
 							<img src="/resources/img/user.png" alt="마이페이지"> <a
@@ -153,7 +154,6 @@
 			}else{
 				return false;
 			}
-			
 		}
 	</script>
 </body>

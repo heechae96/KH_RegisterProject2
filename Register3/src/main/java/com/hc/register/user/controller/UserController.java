@@ -1,5 +1,6 @@
 package com.hc.register.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hc.register.Alert;
 import com.hc.register.subject.domain.Subject;
+import com.hc.register.subject.service.SubjectService;
 import com.hc.register.user.domain.User;
 import com.hc.register.user.service.UserService;
 
@@ -25,8 +28,53 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private SubjectService subjectService;
+
+	// 관리자 전용
+	// 이용자 조회
+	@RequestMapping("/select")
+	public String selectAll(Model model) {
+		try {
+			List<User> list = userService.selectAll();
+			if (list.size() == 0) {
+				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				model.addAttribute("list", list);
+				return "admin/selectUser";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 이용자 삭제
+	@RequestMapping("/deleteUser")
+	public String deleteUser(String userId, Model model) {
+		try {
+			int result = -1;
+			result = userService.delete(userId);
+			if (result > 0) {
+				Alert alert = new Alert("/user/select", "이용자 삭제 완료했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/select", "이용자 삭제 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 	// 이용자 전용
-	
 	// 회원가입
 	@RequestMapping("/enroll")
 	public String enroll() {
@@ -56,7 +104,7 @@ public class UserController {
 	}
 
 	// 회원가입시 아이디 중복 확인
-	@RequestMapping("idChk")
+	@RequestMapping("/idChk")
 	public String idChk(String userId, @ModelAttribute User user, Model model) {
 		try {
 			// user가 null이든 null이 아니든 일단 결과를 보냄
@@ -70,6 +118,64 @@ public class UserController {
 			model.addAttribute("msg", e.getMessage());
 			return "common/error";
 		}
+	}
+
+	// 회원탈퇴
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest req, Model model) {
+		try {
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("user");
+
+			int userResult = -1;
+			int subjectResult = -1;
+
+			if (user != null) {
+				String userId = user.getUserId();
+				user = userService.selectOneById(userId);
+				int subjectCode = user.getSubjectCode();
+				if (subjectCode == 0) {
+					// 수강 신청 기록이 없기 때문에
+					// 회원탈퇴후 세션까지 반환 이후 마무리
+					userResult = userService.delete(userId);
+					if (userResult > 0) {
+						Alert alert = new Alert("/user/logout", "회원탈퇴 성공했습니다");
+						model.addAttribute("alert", alert);
+						return "common/alert";
+					} else {
+						Alert alert = new Alert("/user/update", "회원탈퇴 실패했습니다");
+						model.addAttribute("alert", alert);
+						return "common/alert";
+					}
+				} else {
+					// 수강 신청 기록이 존재하기 때문에
+					// 회원탈퇴후 기록 삭제, 세션까지 반환 이후 마무리
+					Subject subject = subjectService.select(subjectCode);
+					subjectResult = subjectService.minusSubject(subject);
+
+					userResult = userService.delete(userId);
+					if (subjectResult > 0 && userResult > 0) {
+						Alert alert = new Alert("/user/logout", "회원탈퇴 성공했습니다");
+						model.addAttribute("alert", alert);
+						return "common/alert";
+					} else {
+						Alert alert = new Alert("/user/update", "회원탈퇴 실패했습니다");
+						model.addAttribute("alert", alert);
+						return "common/alert";
+					}
+				}
+
+			} else {
+				Alert alert = new Alert("/user/login", "로그인이 필요합니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+
 	}
 
 	// 비밀번호 찾기
@@ -99,12 +205,12 @@ public class UserController {
 	}
 
 	// 비밀번호 수정
-	@RequestMapping("updatePw")
+	@RequestMapping("/updatePw")
 	public String updatePw() {
 		return "user/changePassWord";
 	}
 
-	@RequestMapping(value = "updatePw", method = RequestMethod.POST)
+	@RequestMapping(value = "/updatePw", method = RequestMethod.POST)
 	public String updatePw(String userId, String userPw, @ModelAttribute User user, Model model) {
 		try {
 			int result = -1;
@@ -174,7 +280,7 @@ public class UserController {
 
 	// 정보변경
 	@RequestMapping("/update")
-	public String modify(HttpSession session, Model model) {
+	public String update(HttpSession session, Model model) {
 		try {
 			User user = (User) session.getAttribute("user");
 			if (user != null) {
@@ -195,7 +301,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String modify(String userId, String userPw, String userName, String userPhoneNo, @ModelAttribute User user,
+	public String update(String userId, String userPw, String userName, String userPhoneNo, @ModelAttribute User user,
 			Model model) {
 		try {
 			int result = -1;
@@ -216,20 +322,28 @@ public class UserController {
 		}
 	}
 
-	// 관리자 전용
-	
-	// 이용자 조회
-	@RequestMapping("select")
-	public String selectAll(Model model) {
+	// 수강 신청
+	@RequestMapping("/selectSubject")
+	public String selectSubject(Model model, HttpServletRequest req) {
 		try {
-			List<User> list = userService.selectAll();
+			List<Subject> list = new ArrayList<Subject>();
+			list = subjectService.selectAll();
+			model.addAttribute("list", list);
 			if (list.size() == 0) {
-				Alert alert = new Alert("/home", "이용자가 존재하지 않습니다");
+				Alert alert = new Alert("/home", "개설된 과목이 존재하지 않습니다");
 				model.addAttribute("alert", alert);
 				return "common/alert";
 			} else {
-				model.addAttribute("list", list);
-				return "admin/selectUser";
+				HttpSession session = req.getSession();
+				User user = (User) session.getAttribute("user");
+				user = userService.selectOneById(user.getUserId());
+				if (user.getSubjectCode() == 0) {
+					return "user/selectSubject";
+				} else {
+					Alert alert = new Alert("/user/updateSubject", "수강신청을 이미 완료했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -237,4 +351,99 @@ public class UserController {
 			return "common/error";
 		}
 	}
+
+	@RequestMapping(value = "/selectSubject", method = RequestMethod.POST)
+	public String selectSubject(Model model, String userId, int subjectCode, @ModelAttribute User user) {
+		try {
+			int userResult = -1;
+
+			Subject subject = subjectService.select(subjectCode);
+			int subjectResult = -1;
+			int enrollNo = subject.getEnrollNo();
+			int maxNo = subject.getMaxNo();
+
+			// 추가로 신청을 받을수 있는 경우
+			if (enrollNo < maxNo) {
+				subjectResult = subjectService.plusSubject(subject);
+				userResult = userService.addSubjectCode(user);
+
+				if (userResult > 0 && subjectResult > 0) {
+					Alert alert = new Alert("/user/updateSubject", "수강신청에 성공했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				} else {
+					Alert alert = new Alert("/user/selectSubject", "수강신청에 실패했습니다");
+					model.addAttribute("alert", alert);
+					return "common/alert";
+				}
+			} else { // 추가로 신청을 받지 못하는 경우
+				Alert alert = new Alert("/user/selectSubject", "해당과목은 인원초과로 신청 불가합니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	// 수강 정정(삭제)
+	@RequestMapping("/updateSubject")
+	public String updateSubject(HttpServletRequest req, Model model) {
+		try {
+			List<Subject> list = new ArrayList<Subject>();
+			list = subjectService.selectAll();
+			model.addAttribute("list", list);
+
+			HttpSession session = req.getSession();
+			User user = (User) session.getAttribute("user");
+			user = userService.selectOneById(user.getUserId());
+
+			Subject subject = subjectService.select(user.getSubjectCode());
+			model.addAttribute("subject", subject);
+
+			if (subject != null) {
+				return "user/subjectChkUpdate";
+			} else {
+				Alert alert = new Alert("/user/selectSubject", "수강신청을 먼저 진행해주세요");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	@RequestMapping(value = "/updateSubject", method = RequestMethod.POST)
+	public String updateSubject(HttpServletRequest req, String userId, int subjectCode, Model model) {
+		try {
+			User user = userService.selectOneById(userId);
+			Subject subject = subjectService.select(subjectCode);
+
+			int subjectResult = -1;
+			subjectResult = subjectService.minusSubject(subject);
+
+			int userResult = -1;
+			userResult = userService.removeSubjectCode(user);
+
+			if (subjectResult > 0 && userResult > 0) {
+				Alert alert = new Alert("/user/selectSubject", "해당과목 삭제에 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/user/updateSubject", "해당과목 삭제에 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 }

@@ -20,4 +20,10 @@ public interface UserStore {
 
 	public List<User> selectAll();
 
+	public int addSubjectCode(User user);
+
+	public int removeSubjectCode(User user);
+
+	public int delete(String userId);
+
 }

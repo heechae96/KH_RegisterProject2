@@ -12,4 +12,12 @@ public interface SubjectService {
 
 	int delete(int subjectCode);
 
+	Subject select(int subjectCode);
+
+	int update(Subject subject);
+
+	int plusSubject(Subject subject);
+
+	int minusSubject(Subject subject);
+
 }

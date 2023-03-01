@@ -47,7 +47,7 @@ main{
     }
     form{
 		height: 90%;
-    	width: 90%;
+    	width: 100%;
 	}
     #tableBox{
         height: 100%;
@@ -55,6 +55,7 @@ main{
         margin-bottom: 53.6px;
     }
     table{
+    	width: 100%;
         border: 3px solid black;
         font-size: 1.25em;
         text-align: center;

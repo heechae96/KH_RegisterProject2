@@ -91,4 +91,46 @@ public class SubjectCotroller {
 		}
 	}
 
+	// 과목 수정
+	@RequestMapping("update")
+	public String update(int subjectCode, Model model) {
+		try {
+			Subject subject = subjectService.select(subjectCode);
+			if (subject != null) {
+				model.addAttribute("subject", subject);
+				return "admin/modifySubject";
+			} else {
+				Alert alert = new Alert("/subject/select", "해당 과목이 존재하지 않습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(@ModelAttribute Subject subject, String subjectName, String name, int maxNo, Date startDate,
+			Date endDate, int subjectCode, Model model) {
+		try {
+			int result = -1;
+			result = subjectService.update(subject);
+			if (result > 0) {
+				Alert alert = new Alert("/subject/select", "과목수정에 성공했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			} else {
+				Alert alert = new Alert("/subject/update", "과목수정에 실패했습니다");
+				model.addAttribute("alert", alert);
+				return "common/alert";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			return "common/error";
+		}
+	}
+
 }

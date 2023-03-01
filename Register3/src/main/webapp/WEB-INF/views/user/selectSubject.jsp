@@ -26,9 +26,9 @@
 		</header>
 		<main>
 			<h1>수강 신청</h1>
-			<form action="/register/select" method="post">
-				<input type="hidden" name="id" value="${sessionScope.id }">
-				<input type="hidden" name="codeNum">
+			<form action="/user/selectSubject" method="post">
+				<input type="hidden" name="userId" value="${sessionScope.user.userId }">
+				<input type="hidden" name="subjectCode">
 				<div id="tableBox">
 					<table>
 						<tr>
@@ -82,7 +82,7 @@
 		}
 		function selChk(event) {
 			let code = event.getAttribute('id');
-			let hiddenCode = document.querySelector("[name=codeNum]");
+			let hiddenCode = document.querySelector("[name=subjectCode]");
 			hiddenCode.setAttribute("value", code);
 		}
 	</script>

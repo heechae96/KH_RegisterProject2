@@ -57,4 +57,22 @@ public class UserStoreImpl implements UserStore{
 		return list;
 	}
 
+	@Override
+	public int addSubjectCode(User user) {
+		int result = session.update("userMapper.addSubjectCode", user);
+		return result;
+	}
+
+	@Override
+	public int removeSubjectCode(User user) {
+		int result = session.update("userMapper.removeSubjectCode", user);
+		return result;
+	}
+
+	@Override
+	public int delete(String userId) {
+		int result = session.delete("userMapper.delete", userId);
+		return result;
+	}
+
 }

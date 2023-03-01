@@ -28,8 +28,8 @@
 			<h1>확인 / 정정</h1>
 			<form action="/register/deleteSub" method="post">
 				<div id="viewBox">
-					<input type="hidden" name="id" value="${sessionScope.id }">
-					<input type="hidden" name="codeNum">
+					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
+					<input type="hidden" name="subjectCode">
 					<div id="view">
 						<h2>개설 과목</h2>
 						<table>
@@ -105,9 +105,9 @@
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
 		}
-		function delChk(event) {
+		function selChk(event) {
 			let code = event.getAttribute('id');
-			let hiddenCode = document.querySelector("[name=codeNum]");
+			let hiddenCode = document.querySelector("[name=subjectCode]");
 			hiddenCode.setAttribute("value", code);
 		}
 	</script>

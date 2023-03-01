@@ -33,4 +33,28 @@ public class SubjectServiceImpl implements SubjectService{
 		return result;
 	}
 
+	@Override
+	public Subject select(int subjectCode) {
+		Subject subject = subjectStore.select(subjectCode);
+		return subject;
+	}
+
+	@Override
+	public int update(Subject subject) {
+		int result = subjectStore.update(subject);
+		return result;
+	}
+
+	@Override
+	public int plusSubject(Subject subject) {
+		int result = subjectStore.plusSubject(subject);
+		return result;
+	}
+
+	@Override
+	public int minusSubject(Subject subject) {
+		int result = subjectStore.minusSubject(subject);
+		return result;
+	}
+
 }

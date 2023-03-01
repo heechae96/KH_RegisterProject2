@@ -96,7 +96,7 @@
 			let delConfirm = confirm('해당 이용자를 정말 삭제하시겠습니까?');
 			var id = event.getAttribute('class');
 			if (delConfirm) {
-				location.href = "/admin/deleteUser?id=" + id;
+				location.href = "/user/deleteUser?userId=" + id;
 			} else {
 				return;
 			}

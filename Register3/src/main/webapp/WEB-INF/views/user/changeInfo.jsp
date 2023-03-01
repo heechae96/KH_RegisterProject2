@@ -83,7 +83,7 @@
 		}
 		function check() {
 			if (confirm("주의! 회원탈퇴 이후에는 복구 할 수 없습니다. \n정말로 회원탈퇴를 진행하시겠습니까?")) {
-				location.href = "/user/delete?userid=${sessionScope.user.userId }";
+				location.href = "/user/delete";
 			}
 		}
 	</script>

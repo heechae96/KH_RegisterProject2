@@ -25,14 +25,14 @@
 		</header>
 		<main>
 			<h1>과목 수정</h1>
-			<form action="/admin/update" method="post">
+			<form action="/subject/update" method="post" onsubmit="return dateChk()">
 				<div id="inputBox">
 					<div id="subjectName">
 						<span>과목명</span> <input type="text" name="subjectName"
 							value="${subject.subjectName }" required>
 					</div>
 					<div id="subCode">
-						<span>과목코드</span> <input type="text" name="subCode"
+						<span>과목코드</span> <input type="text" name="subjectCode"
 							value="${subject.subjectCode }" readonly>
 					</div>
 					<div id="name">
@@ -40,19 +40,19 @@
 							value="${subject.name }" required>
 					</div>
 					<div id=enrollNum">
-						<span>신청 인원</span> <input type="number" name="enrollNum"
+						<span>신청 인원</span> <input type="number" name="enrollNo"
 							value="${subject.enrollNo }" readonly>
 					</div>
 					<div id="maxNum">
-						<span>인원 제한</span> <input type="number" name="maxNum"
+						<span>인원 제한</span> <input type="number" name="maxNo" min=1
 							value="${subject.maxNo }" required>
 					</div>
 					<div id="start">
-						<span>개강일</span> <input type="date" name="start"
+						<span>개강일</span> <input type="date" name="startDate"
 							value="${subject.startDate }" required>
 					</div>
 					<div id="end">
-						<span>종강일</span> <input type="date" name="end"
+						<span>종강일</span> <input type="date" name="endDate"
 							value="${subject.endDate }" required>
 					</div>
 					<div id="submit">
@@ -80,6 +80,16 @@
 			var name = "popup";
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
+		}
+		function dateChk() {
+			let start = document.querySelector('input[name=startDate]');
+			let end = document.querySelector('input[name=endDate]');
+			if(start.value > end.value){
+				alert("종강일이 개강일보다 빠를 수 없습니다");
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </body>
