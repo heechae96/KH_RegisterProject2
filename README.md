@@ -19,7 +19,7 @@
     - Spring Framework을 이용 할 것
 3. 보완 사항
     - [x] Youtube IFrame Player API을 사용해 메인 화면 꾸미기
-    - [x] alert 클래스로 빼서 중복 코드 제거 할 
+    - [x] alert 클래스로 빼서 중복 코드 제거 할 것
     
 # 5차 미니 프로젝트
 1. 1~4차시 미니 프로젝트와 동일한 주제    
