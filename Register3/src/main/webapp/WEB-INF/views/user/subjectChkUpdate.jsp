@@ -26,10 +26,10 @@
 		</header>
 		<main>
 			<h1>확인 / 정정</h1>
-			<form action="/register/deleteSub" method="post">
+			<form action="/user/updateSubject" method="post">
 				<div id="viewBox">
 					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
-					<input type="hidden" name="subjectCode">
+					<input type="hidden" name="subjectCode" value="${subject.subjectCode }">
 					<div id="select">
 						<h2>신청 과목</h2>
 						<table>
@@ -104,11 +104,6 @@
 			var name = "popup";
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
-		}
-		function selChk(event) {
-			let code = event.getAttribute('id');
-			let hiddenCode = document.querySelector("[name=subjectCode]");
-			hiddenCode.setAttribute("value", code);
 		}
 	</script>
 </body>
