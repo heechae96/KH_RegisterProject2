@@ -105,6 +105,11 @@
 			var options = "width = 750, height = 925";
 			window.open(url, name, options);
 		}
+		function delChk(event) {
+			let code = event.getAttribute('id');
+			let hiddenCode = document.querySelector("[name=codeNum]");
+			hiddenCode.setAttribute("value", code);
+		}
 	</script>
 </body>
 </body>
